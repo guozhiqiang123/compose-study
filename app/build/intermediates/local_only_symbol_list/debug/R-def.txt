@@ -1,0 +1,20 @@
+R_DEF: Internal format may change without notice
+local
+color primaryColor
+drawable avatar
+drawable empty_list_decoration
+drawable eye_close
+drawable eye_open
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+drawable icon_001
+drawable icon_002
+drawable icon_003
+drawable icon_004
+drawable icon_browser
+drawable load_holder
+drawable navigate_next
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+style Theme.AndroidTemplate

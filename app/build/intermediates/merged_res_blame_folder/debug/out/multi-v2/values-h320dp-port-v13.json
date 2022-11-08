@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.gzq.wanandroid.app-mergeDebugResources-71:/values-h320dp-port-v13/values-h320dp-port-v13.xml",
+            "map": [
+                {
+                    "source": "/home/gzq/.gradle/caches/transforms-3/bd079642b4d7e3c3ec0f5c692b7efcef/transformed/material-1.4.0/res/values-h320dp-port-v13/values-h320dp-port-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "75",
+                        "endOffsets": "126"
+                    }
+                }
+            ]
+        }
+    ]
+}

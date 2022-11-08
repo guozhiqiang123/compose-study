@@ -1,0 +1,255 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.gzq.wanandroid"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="22"
+8-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="33" />
+9-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+11-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:4:5-79
+11-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:4:22-76
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:5:5-67
+12-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:5:22-64
+13    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+13-->[io.github.panpf.sketch3:sketch:3.1.0] /home/gzq/.gradle/caches/transforms-3/c4f8bfa83b1f07fb94b1ed39371c982d/transformed/sketch-3.1.0/AndroidManifest.xml:11:5-80
+13-->[io.github.panpf.sketch3:sketch:3.1.0] /home/gzq/.gradle/caches/transforms-3/c4f8bfa83b1f07fb94b1ed39371c982d/transformed/sketch-3.1.0/AndroidManifest.xml:11:22-77
+14
+15    <queries>
+15-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:7:5-13:15
+16        <intent>
+16-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:8:9-12:18
+17            <action android:name="android.intent.action.CREATE_DOCUMENT" />
+17-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:9:13-76
+17-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:9:21-73
+18
+19            <data android:mimeType="*/*" />
+19-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:11:13-44
+19-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:11:19-41
+20        </intent>
+21    </queries>
+22
+23    <permission
+23-->[androidx.core:core:1.9.0] /home/gzq/.gradle/caches/transforms-3/7e115f31ca973c3fbdefa54635290a09/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+24        android:name="com.gzq.wanandroid.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+24-->[androidx.core:core:1.9.0] /home/gzq/.gradle/caches/transforms-3/7e115f31ca973c3fbdefa54635290a09/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+25        android:protectionLevel="signature" />
+25-->[androidx.core:core:1.9.0] /home/gzq/.gradle/caches/transforms-3/7e115f31ca973c3fbdefa54635290a09/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+26
+27    <uses-permission android:name="com.gzq.wanandroid.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+27-->[androidx.core:core:1.9.0] /home/gzq/.gradle/caches/transforms-3/7e115f31ca973c3fbdefa54635290a09/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+27-->[androidx.core:core:1.9.0] /home/gzq/.gradle/caches/transforms-3/7e115f31ca973c3fbdefa54635290a09/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+28
+29    <application
+29-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:7:5-26:19
+30        android:name="com.gzq.wanandroid.App"
+30-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:8:9-28
+31        android:allowBackup="true"
+31-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:9:9-35
+32        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+32-->[androidx.core:core:1.9.0] /home/gzq/.gradle/caches/transforms-3/7e115f31ca973c3fbdefa54635290a09/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+33        android:debuggable="true"
+34        android:icon="@mipmap/ic_launcher"
+34-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:10:9-43
+35        android:label="@string/app_name"
+35-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:11:9-41
+36        android:roundIcon="@mipmap/ic_launcher_round"
+36-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:12:9-54
+37        android:supportsRtl="true"
+37-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:13:9-35
+38        android:testOnly="true"
+39        android:theme="@style/Theme.AndroidTemplate" >
+39-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:14:9-53
+40        <activity
+40-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:15:9-25:20
+41            android:name="com.gzq.wanandroid.MainActivity"
+41-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:16:13-41
+42            android:exported="true"
+42-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:17:13-36
+43            android:label="@string/app_name"
+43-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:18:13-45
+44            android:theme="@style/Theme.AndroidTemplate" >
+44-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:19:13-57
+45            <intent-filter>
+45-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:20:13-24:29
+46                <action android:name="android.intent.action.MAIN" />
+46-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:21:17-69
+46-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:21:25-66
+47
+48                <category android:name="android.intent.category.LAUNCHER" />
+48-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:23:17-77
+48-->/home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:23:27-74
+49            </intent-filter>
+50        </activity>
+51        <activity
+51-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:16:9-21:52
+52            android:name="com.chuckerteam.chucker.internal.ui.MainActivity"
+52-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:17:13-76
+53            android:label="@string/chucker_name"
+53-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:18:13-49
+54            android:launchMode="singleTask"
+54-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:19:13-44
+55            android:taskAffinity="com.chuckerteam.chucker.task"
+55-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:20:13-64
+56            android:theme="@style/Chucker.Theme" />
+56-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:21:13-49
+57        <activity
+57-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:22:9-25:52
+58            android:name="com.chuckerteam.chucker.internal.ui.transaction.TransactionActivity"
+58-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:23:13-95
+59            android:parentActivityName="com.chuckerteam.chucker.internal.ui.MainActivity"
+59-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:24:13-90
+60            android:theme="@style/Chucker.Theme" />
+60-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:25:13-49
+61        <activity
+61-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:26:9-29:52
+62            android:name="com.chuckerteam.chucker.internal.ui.throwable.ThrowableActivity"
+62-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:27:13-91
+63            android:parentActivityName="com.chuckerteam.chucker.internal.ui.MainActivity"
+63-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:28:13-90
+64            android:theme="@style/Chucker.Theme" />
+64-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:29:13-49
+65
+66        <service
+66-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:31:9-33:40
+67            android:name="com.chuckerteam.chucker.internal.support.ClearDatabaseService"
+67-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:32:13-89
+68            android:exported="false" />
+68-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:33:13-37
+69
+70        <provider
+70-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:35:9-43:20
+71            android:name="com.chuckerteam.chucker.internal.support.ChuckerFileProvider"
+71-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:36:13-88
+72            android:authorities="com.gzq.wanandroid.com.chuckerteam.chucker.provider"
+72-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:37:13-84
+73            android:exported="false"
+73-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:38:13-37
+74            android:grantUriPermissions="true" >
+74-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:39:13-47
+75            <meta-data
+75-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:40:13-42:66
+76                android:name="android.support.FILE_PROVIDER_PATHS"
+76-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:41:17-67
+77                android:resource="@xml/chucker_provider_paths" />
+77-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:42:17-63
+78        </provider>
+79
+80        <activity
+80-->[androidx.compose.ui:ui-tooling:1.3.0] /home/gzq/.gradle/caches/transforms-3/1e19e0fffdeee26c26d1e52fc361b408/transformed/ui-tooling-1.3.0/AndroidManifest.xml:23:9-25:39
+81            android:name="androidx.compose.ui.tooling.PreviewActivity"
+81-->[androidx.compose.ui:ui-tooling:1.3.0] /home/gzq/.gradle/caches/transforms-3/1e19e0fffdeee26c26d1e52fc361b408/transformed/ui-tooling-1.3.0/AndroidManifest.xml:24:13-71
+82            android:exported="true" />
+82-->[androidx.compose.ui:ui-tooling:1.3.0] /home/gzq/.gradle/caches/transforms-3/1e19e0fffdeee26c26d1e52fc361b408/transformed/ui-tooling-1.3.0/AndroidManifest.xml:25:13-36
+83        <activity
+83-->[androidx.compose.ui:ui-test-manifest:1.3.0] /home/gzq/.gradle/caches/transforms-3/7f80d4cec4003fed3df731dc6698e132/transformed/ui-test-manifest-1.3.0/AndroidManifest.xml:23:9-25:39
+84            android:name="androidx.activity.ComponentActivity"
+84-->[androidx.compose.ui:ui-test-manifest:1.3.0] /home/gzq/.gradle/caches/transforms-3/7f80d4cec4003fed3df731dc6698e132/transformed/ui-test-manifest-1.3.0/AndroidManifest.xml:24:13-63
+85            android:exported="true" />
+85-->[androidx.compose.ui:ui-test-manifest:1.3.0] /home/gzq/.gradle/caches/transforms-3/7f80d4cec4003fed3df731dc6698e132/transformed/ui-test-manifest-1.3.0/AndroidManifest.xml:25:13-36
+86
+87        <uses-library
+87-->[androidx.window:window:1.0.0] /home/gzq/.gradle/caches/transforms-3/4f3c805102fcd5b4e67ab595331eddfb/transformed/window-1.0.0/AndroidManifest.xml:25:9-27:40
+88            android:name="androidx.window.extensions"
+88-->[androidx.window:window:1.0.0] /home/gzq/.gradle/caches/transforms-3/4f3c805102fcd5b4e67ab595331eddfb/transformed/window-1.0.0/AndroidManifest.xml:26:13-54
+89            android:required="false" />
+89-->[androidx.window:window:1.0.0] /home/gzq/.gradle/caches/transforms-3/4f3c805102fcd5b4e67ab595331eddfb/transformed/window-1.0.0/AndroidManifest.xml:27:13-37
+90        <uses-library
+90-->[androidx.window:window:1.0.0] /home/gzq/.gradle/caches/transforms-3/4f3c805102fcd5b4e67ab595331eddfb/transformed/window-1.0.0/AndroidManifest.xml:28:9-30:40
+91            android:name="androidx.window.sidecar"
+91-->[androidx.window:window:1.0.0] /home/gzq/.gradle/caches/transforms-3/4f3c805102fcd5b4e67ab595331eddfb/transformed/window-1.0.0/AndroidManifest.xml:29:13-51
+92            android:required="false" />
+92-->[androidx.window:window:1.0.0] /home/gzq/.gradle/caches/transforms-3/4f3c805102fcd5b4e67ab595331eddfb/transformed/window-1.0.0/AndroidManifest.xml:30:13-37
+93
+94        <provider
+94-->[com.github.Justson.AgentWeb:agentweb-core:v5.0.6-androidx] /home/gzq/.gradle/caches/transforms-3/c9da022543dccecf6fa0f93ee9eb4d0c/transformed/agentweb-core-v5.0.6-androidx/AndroidManifest.xml:10:9-18:20
+95            android:name="com.just.agentweb.AgentWebFileProvider"
+95-->[com.github.Justson.AgentWeb:agentweb-core:v5.0.6-androidx] /home/gzq/.gradle/caches/transforms-3/c9da022543dccecf6fa0f93ee9eb4d0c/transformed/agentweb-core-v5.0.6-androidx/AndroidManifest.xml:11:13-66
+96            android:authorities="com.gzq.wanandroid.AgentWebFileProvider"
+96-->[com.github.Justson.AgentWeb:agentweb-core:v5.0.6-androidx] /home/gzq/.gradle/caches/transforms-3/c9da022543dccecf6fa0f93ee9eb4d0c/transformed/agentweb-core-v5.0.6-androidx/AndroidManifest.xml:12:13-72
+97            android:exported="false"
+97-->[com.github.Justson.AgentWeb:agentweb-core:v5.0.6-androidx] /home/gzq/.gradle/caches/transforms-3/c9da022543dccecf6fa0f93ee9eb4d0c/transformed/agentweb-core-v5.0.6-androidx/AndroidManifest.xml:13:13-37
+98            android:grantUriPermissions="true" >
+98-->[com.github.Justson.AgentWeb:agentweb-core:v5.0.6-androidx] /home/gzq/.gradle/caches/transforms-3/c9da022543dccecf6fa0f93ee9eb4d0c/transformed/agentweb-core-v5.0.6-androidx/AndroidManifest.xml:14:13-47
+99            <meta-data
+99-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:40:13-42:66
+100                android:name="android.support.FILE_PROVIDER_PATHS"
+100-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:41:17-67
+101                android:resource="@xml/web_files_public" />
+101-->[com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:42:17-63
+102        </provider>
+103
+104        <activity
+104-->[com.github.Justson.AgentWeb:agentweb-core:v5.0.6-androidx] /home/gzq/.gradle/caches/transforms-3/c9da022543dccecf6fa0f93ee9eb4d0c/transformed/agentweb-core-v5.0.6-androidx/AndroidManifest.xml:20:9-27:20
+105            android:name="com.just.agentweb.AgentActionFragment"
+105-->[com.github.Justson.AgentWeb:agentweb-core:v5.0.6-androidx] /home/gzq/.gradle/caches/transforms-3/c9da022543dccecf6fa0f93ee9eb4d0c/transformed/agentweb-core-v5.0.6-androidx/AndroidManifest.xml:21:13-65
+106            android:configChanges="keyboardHidden|orientation|screenSize"
+106-->[com.github.Justson.AgentWeb:agentweb-core:v5.0.6-androidx] /home/gzq/.gradle/caches/transforms-3/c9da022543dccecf6fa0f93ee9eb4d0c/transformed/agentweb-core-v5.0.6-androidx/AndroidManifest.xml:22:13-74
+107            android:exported="false"
+107-->[com.github.Justson.AgentWeb:agentweb-core:v5.0.6-androidx] /home/gzq/.gradle/caches/transforms-3/c9da022543dccecf6fa0f93ee9eb4d0c/transformed/agentweb-core-v5.0.6-androidx/AndroidManifest.xml:23:13-37
+108            android:launchMode="standard"
+108-->[com.github.Justson.AgentWeb:agentweb-core:v5.0.6-androidx] /home/gzq/.gradle/caches/transforms-3/c9da022543dccecf6fa0f93ee9eb4d0c/transformed/agentweb-core-v5.0.6-androidx/AndroidManifest.xml:24:13-42
+109            android:theme="@style/actionActivity"
+109-->[com.github.Justson.AgentWeb:agentweb-core:v5.0.6-androidx] /home/gzq/.gradle/caches/transforms-3/c9da022543dccecf6fa0f93ee9eb4d0c/transformed/agentweb-core-v5.0.6-androidx/AndroidManifest.xml:25:13-50
+110            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" >
+110-->[com.github.Justson.AgentWeb:agentweb-core:v5.0.6-androidx] /home/gzq/.gradle/caches/transforms-3/c9da022543dccecf6fa0f93ee9eb4d0c/transformed/agentweb-core-v5.0.6-androidx/AndroidManifest.xml:26:13-72
+111        </activity>
+112
+113        <service
+113-->[androidx.room:room-runtime:2.3.0] /home/gzq/.gradle/caches/transforms-3/0775278cdf69b0a80cc516a480578a99/transformed/room-runtime-2.3.0/AndroidManifest.xml:25:9-28:40
+114            android:name="androidx.room.MultiInstanceInvalidationService"
+114-->[androidx.room:room-runtime:2.3.0] /home/gzq/.gradle/caches/transforms-3/0775278cdf69b0a80cc516a480578a99/transformed/room-runtime-2.3.0/AndroidManifest.xml:26:13-74
+115            android:directBootAware="true"
+115-->[androidx.room:room-runtime:2.3.0] /home/gzq/.gradle/caches/transforms-3/0775278cdf69b0a80cc516a480578a99/transformed/room-runtime-2.3.0/AndroidManifest.xml:27:13-43
+116            android:exported="false" />
+116-->[androidx.room:room-runtime:2.3.0] /home/gzq/.gradle/caches/transforms-3/0775278cdf69b0a80cc516a480578a99/transformed/room-runtime-2.3.0/AndroidManifest.xml:28:13-37
+117
+118        <provider
+118-->[androidx.profileinstaller:profileinstaller:1.2.0] /home/gzq/.gradle/caches/transforms-3/095dcd0c5fe2db897c98069b144bc5a3/transformed/profileinstaller-1.2.0/AndroidManifest.xml:25:9-33:20
+119            android:name="androidx.startup.InitializationProvider"
+119-->[androidx.profileinstaller:profileinstaller:1.2.0] /home/gzq/.gradle/caches/transforms-3/095dcd0c5fe2db897c98069b144bc5a3/transformed/profileinstaller-1.2.0/AndroidManifest.xml:26:13-67
+120            android:authorities="com.gzq.wanandroid.androidx-startup"
+120-->[androidx.profileinstaller:profileinstaller:1.2.0] /home/gzq/.gradle/caches/transforms-3/095dcd0c5fe2db897c98069b144bc5a3/transformed/profileinstaller-1.2.0/AndroidManifest.xml:27:13-68
+121            android:exported="false" >
+121-->[androidx.profileinstaller:profileinstaller:1.2.0] /home/gzq/.gradle/caches/transforms-3/095dcd0c5fe2db897c98069b144bc5a3/transformed/profileinstaller-1.2.0/AndroidManifest.xml:28:13-37
+122            <meta-data
+122-->[androidx.profileinstaller:profileinstaller:1.2.0] /home/gzq/.gradle/caches/transforms-3/095dcd0c5fe2db897c98069b144bc5a3/transformed/profileinstaller-1.2.0/AndroidManifest.xml:30:13-32:52
+123                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+123-->[androidx.profileinstaller:profileinstaller:1.2.0] /home/gzq/.gradle/caches/transforms-3/095dcd0c5fe2db897c98069b144bc5a3/transformed/profileinstaller-1.2.0/AndroidManifest.xml:31:17-85
+124                android:value="androidx.startup" />
+124-->[androidx.profileinstaller:profileinstaller:1.2.0] /home/gzq/.gradle/caches/transforms-3/095dcd0c5fe2db897c98069b144bc5a3/transformed/profileinstaller-1.2.0/AndroidManifest.xml:32:17-49
+125        </provider>
+126
+127        <receiver
+127-->[androidx.profileinstaller:profileinstaller:1.2.0] /home/gzq/.gradle/caches/transforms-3/095dcd0c5fe2db897c98069b144bc5a3/transformed/profileinstaller-1.2.0/AndroidManifest.xml:35:9-47:20
+128            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+128-->[androidx.profileinstaller:profileinstaller:1.2.0] /home/gzq/.gradle/caches/transforms-3/095dcd0c5fe2db897c98069b144bc5a3/transformed/profileinstaller-1.2.0/AndroidManifest.xml:36:13-76
+129            android:directBootAware="false"
+129-->[androidx.profileinstaller:profileinstaller:1.2.0] /home/gzq/.gradle/caches/transforms-3/095dcd0c5fe2db897c98069b144bc5a3/transformed/profileinstaller-1.2.0/AndroidManifest.xml:37:13-44
+130            android:enabled="true"
+130-->[androidx.profileinstaller:profileinstaller:1.2.0] /home/gzq/.gradle/caches/transforms-3/095dcd0c5fe2db897c98069b144bc5a3/transformed/profileinstaller-1.2.0/AndroidManifest.xml:38:13-35
+131            android:exported="true"
+131-->[androidx.profileinstaller:profileinstaller:1.2.0] /home/gzq/.gradle/caches/transforms-3/095dcd0c5fe2db897c98069b144bc5a3/transformed/profileinstaller-1.2.0/AndroidManifest.xml:39:13-36
+132            android:permission="android.permission.DUMP" >
+132-->[androidx.profileinstaller:profileinstaller:1.2.0] /home/gzq/.gradle/caches/transforms-3/095dcd0c5fe2db897c98069b144bc5a3/transformed/profileinstaller-1.2.0/AndroidManifest.xml:40:13-57
+133            <intent-filter>
+133-->[androidx.profileinstaller:profileinstaller:1.2.0] /home/gzq/.gradle/caches/transforms-3/095dcd0c5fe2db897c98069b144bc5a3/transformed/profileinstaller-1.2.0/AndroidManifest.xml:41:13-43:29
+134                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+134-->[androidx.profileinstaller:profileinstaller:1.2.0] /home/gzq/.gradle/caches/transforms-3/095dcd0c5fe2db897c98069b144bc5a3/transformed/profileinstaller-1.2.0/AndroidManifest.xml:42:17-91
+134-->[androidx.profileinstaller:profileinstaller:1.2.0] /home/gzq/.gradle/caches/transforms-3/095dcd0c5fe2db897c98069b144bc5a3/transformed/profileinstaller-1.2.0/AndroidManifest.xml:42:25-88
+135            </intent-filter>
+136            <intent-filter>
+136-->[androidx.profileinstaller:profileinstaller:1.2.0] /home/gzq/.gradle/caches/transforms-3/095dcd0c5fe2db897c98069b144bc5a3/transformed/profileinstaller-1.2.0/AndroidManifest.xml:44:13-46:29
+137                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+137-->[androidx.profileinstaller:profileinstaller:1.2.0] /home/gzq/.gradle/caches/transforms-3/095dcd0c5fe2db897c98069b144bc5a3/transformed/profileinstaller-1.2.0/AndroidManifest.xml:45:17-85
+137-->[androidx.profileinstaller:profileinstaller:1.2.0] /home/gzq/.gradle/caches/transforms-3/095dcd0c5fe2db897c98069b144bc5a3/transformed/profileinstaller-1.2.0/AndroidManifest.xml:45:25-82
+138            </intent-filter>
+139        </receiver>
+140    </application>
+141
+142</manifest>
