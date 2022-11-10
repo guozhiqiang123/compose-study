@@ -8,7 +8,7 @@ import com.github.panpf.sketch.SketchFactory
 import com.github.panpf.sketch.decode.SvgBitmapDecoder
 import com.gzq.wanandroid.net.NetHelper
 import com.tencent.mmkv.MMKV
-import com.zlketang.it.core.log.CrashReportingTree
+import com.gzq.wanandroid.core.log.CrashReportingTree
 import timber.log.Timber
 
 class App : Application(), SketchFactory {

@@ -3,7 +3,7 @@ package com.gzq.wanandroid.core.http
 import android.content.Context
 import android.net.NetworkCapabilities
 import android.os.Build
-import com.zlcoder.core.extension.connectivityManager
+import com.gzq.wanandroid.core.extension.connectivityManager
 
 /**
  * Injectable class which returns information about the network connection state.

@@ -1,4 +1,4 @@
-package com.zlcoder.core.extension
+package com.gzq.wanandroid.core.extension
 
 import android.app.UiModeManager
 import android.content.ClipData

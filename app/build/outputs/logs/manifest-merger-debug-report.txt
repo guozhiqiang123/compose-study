@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:1-28:12
-INJECTED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:1-28:12
-INJECTED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:1-28:12
-INJECTED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:1-28:12
+ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:1-25:12
+INJECTED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:1-25:12
+INJECTED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:1-25:12
+INJECTED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:1-25:12
 MERGED from [io.github.panpf.sketch3:sketch-compose:3.1.0] /home/gzq/.gradle/caches/transforms-3/9874f353bb2a7161c1fe82bcbacc4580/transformed/sketch-compose-3.1.0/AndroidManifest.xml:2:1-9:12
 MERGED from [io.github.panpf.sketch3:sketch-svg:3.1.0] /home/gzq/.gradle/caches/transforms-3/25ec9ec3c9936bbafa38c6ea4a98a98d/transformed/sketch-svg-3.1.0/AndroidManifest.xml:2:1-9:12
 MERGED from [io.github.panpf.sketch3:sketch:3.1.0] /home/gzq/.gradle/caches/transforms-3/c4f8bfa83b1f07fb94b1ed39371c982d/transformed/sketch-3.1.0/AndroidManifest.xml:2:1-13:12
@@ -108,20 +108,20 @@ MERGED from [androidx.documentfile:documentfile:1.0.0] /home/gzq/.gradle/caches/
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/gzq/.gradle/caches/transforms-3/3596eac5cc523ab0303387c08f0051e4/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] /home/gzq/.gradle/caches/transforms-3/adac32b34c223eb4f44052e9f45f7ce5/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [com.caverock:androidsvg-aar:1.4] /home/gzq/.gradle/caches/transforms-3/7fb9bb2ea7c4280ec7ce7c4db085f67b/transformed/androidsvg-aar-1.4/AndroidManifest.xml:2:1-11:12
-INJECTED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:1-28:12
-INJECTED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:1-28:12
-INJECTED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:1-28:12
+INJECTED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:1-25:12
+INJECTED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:1-25:12
+INJECTED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:1-25:12
 	package
 		INJECTED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml
-		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:1-28:12
+		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:1-25:12
 		INJECTED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml
-		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:1-28:12
+		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:1-25:12
 		INJECTED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml
-		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:1-28:12
+		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:1-25:12
 		INJECTED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:2:11-69
@@ -138,7 +138,7 @@ MERGED from [io.github.panpf.sketch3:sketch:3.1.0] /home/gzq/.gradle/caches/tran
 	android:name
 		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:5:22-64
 application
-ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:7:5-26:19
+ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:7:5-23:19
 MERGED from [com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:15:5-44:19
 MERGED from [com.github.chuckerteam.chucker:library:3.5.2] /home/gzq/.gradle/caches/transforms-3/228f62de7a928f1895947c1ced1e0343/transformed/library-3.5.2/AndroidManifest.xml:15:5-44:19
 MERGED from [androidx.compose.ui:ui-tooling:1.3.0] /home/gzq/.gradle/caches/transforms-3/1e19e0fffdeee26c26d1e52fc361b408/transformed/ui-tooling-1.3.0/AndroidManifest.xml:22:5-26:19
@@ -174,39 +174,33 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/gzq/.
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.9.0] /home/gzq/.gradle/caches/transforms-3/7e115f31ca973c3fbdefa54635290a09/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:13:9-35
+		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:12:9-35
 	android:label
 		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:11:9-41
-	android:roundIcon
-		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:12:9-54
 	android:icon
 		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:10:9-43
 	android:allowBackup
 		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:9:9-35
 	android:theme
-		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:14:9-53
+		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:13:9-60
 	android:name
 		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:8:9-28
 activity#com.gzq.wanandroid.MainActivity
-ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:15:9-25:20
-	android:label
-		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:18:13-45
+ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:14:9-22:20
 	android:exported
-		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:17:13-36
-	android:theme
-		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:19:13-57
+		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:16:13-36
 	android:name
-		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:16:13-41
+		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:15:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:20:13-24:29
+ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:17:13-21:29
 action#android.intent.action.MAIN
-ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:21:17-69
+ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:18:17-69
 	android:name
-		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:21:25-66
+		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:18:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:23:17-77
+ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:20:17-77
 	android:name
-		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:23:27-74
+		ADDED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml:20:27-74
 uses-sdk
 INJECTED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/gzq/AndroidStudioProjects/compose-study/app/src/main/AndroidManifest.xml

@@ -16,6 +16,7 @@ import timber.log.Timber
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_AndroidTemplate)
         super.onCreate(savedInstanceState)
 
         setContent {
@@ -25,8 +26,9 @@ class MainActivity : ComponentActivity() {
             val currentBackStackEntryAsState by navHostController.currentBackStackEntryAsState()
             LaunchedEffect(navHostController, currentBackStackEntryAsState) {
                 Timber.tag(TAG_INFO)
-                    .d("当前页面栈信息：${currentBackStackEntryAsState?.destination?.route}," +
-                            "栈内页面数量：${navHostController.backQueue.map { it.destination.route }}"
+                    .d(
+                        "当前页面栈信息：${currentBackStackEntryAsState?.destination?.route}," +
+                                "栈内页面数量：${navHostController.backQueue.map { it.destination.route }}"
                     )
             }
             MainPage(windowSizeClass, appState = appState)

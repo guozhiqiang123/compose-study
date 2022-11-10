@@ -1,4 +1,4 @@
-package com.zlketang.it.core.log
+package com.gzq.wanandroid.core.log
 
 import android.util.Log
 import timber.log.Timber

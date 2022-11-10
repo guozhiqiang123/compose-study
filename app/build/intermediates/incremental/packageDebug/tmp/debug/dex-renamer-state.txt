@@ -1,4 +1,4 @@
-#Tue Nov 08 17:48:54 GMT+08:00 2022
+#Thu Nov 10 13:57:56 GMT+08:00 2022
 base.0=/home/gzq/AndroidStudioProjects/compose-study/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 base.1=/home/gzq/AndroidStudioProjects/compose-study/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
 base.10=/home/gzq/AndroidStudioProjects/compose-study/app/build/intermediates/dex/debug/mergeProjectDexDebug/3/classes.dex

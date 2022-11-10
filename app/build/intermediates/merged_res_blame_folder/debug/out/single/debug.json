@@ -1,102 +1,66 @@
 [
     {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/drawable_icon_browser.xml.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/drawable/icon_browser.xml"
+        "merged": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-merged_res-73:/drawable-xxhdpi_logo_no_background.png.flat",
+        "source": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-main-75:/drawable-xxhdpi/logo_no_background.png"
     },
     {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "com.gzq.wanandroid.app-merged_res-73:/drawable_bg_splash.xml.flat",
+        "source": "com.gzq.wanandroid.app-main-75:/drawable/bg_splash.xml"
     },
     {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/drawable-xxhdpi_avatar.png.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/drawable-xxhdpi/avatar.png"
+        "merged": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-merged_res-73:/drawable_icon_004.xml.flat",
+        "source": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-main-75:/drawable/icon_004.xml"
     },
     {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-merged_res-73:/drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-main-75:/drawable-v24/ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-merged_res-73:/drawable_load_holder.xml.flat",
+        "source": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-main-75:/drawable/load_holder.xml"
     },
     {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-merged_res-73:/drawable_bg_splash.xml.flat",
+        "source": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-main-75:/drawable/bg_splash.xml"
     },
     {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/drawable_load_holder.xml.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/drawable/load_holder.xml"
+        "merged": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-merged_res-73:/drawable_empty_list_decoration.xml.flat",
+        "source": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-main-75:/drawable/empty_list_decoration.xml"
     },
     {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/drawable_eye_open.xml.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/drawable/eye_open.xml"
+        "merged": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-merged_res-73:/drawable_eye_close.xml.flat",
+        "source": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-main-75:/drawable/eye_close.xml"
     },
     {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-merged_res-73:/drawable_eye_open.xml.flat",
+        "source": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-main-75:/drawable/eye_open.xml"
     },
     {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/drawable_navigate_next.xml.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/drawable/navigate_next.xml"
+        "merged": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-merged_res-73:/drawable_icon_001.xml.flat",
+        "source": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-main-75:/drawable/icon_001.xml"
     },
     {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/drawable_icon_001.xml.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/drawable/icon_001.xml"
+        "merged": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-merged_res-73:/drawable_icon_browser.xml.flat",
+        "source": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-main-75:/drawable/icon_browser.xml"
     },
     {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/drawable-v24_ic_launcher_foreground.xml.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/drawable-v24/ic_launcher_foreground.xml"
+        "merged": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-merged_res-73:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-main-75:/mipmap-xxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/drawable_ic_launcher_background.xml.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/drawable/ic_launcher_background.xml"
+        "merged": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-merged_res-73:/drawable_icon_003.xml.flat",
+        "source": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-main-75:/drawable/icon_003.xml"
     },
     {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/drawable_empty_list_decoration.xml.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/drawable/empty_list_decoration.xml"
+        "merged": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-merged_res-73:/drawable_navigate_next.xml.flat",
+        "source": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-main-75:/drawable/navigate_next.xml"
     },
     {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/drawable_icon_003.xml.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/drawable/icon_003.xml"
+        "merged": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-merged_res-73:/drawable-xxhdpi_avatar.png.flat",
+        "source": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-main-75:/drawable-xxhdpi/avatar.png"
     },
     {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/mipmap-mdpi/ic_launcher.webp"
-    },
-    {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/drawable_icon_004.xml.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/drawable/icon_004.xml"
-    },
-    {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/mipmap-xxhdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/mipmap-xxxhdpi/ic_launcher.webp"
-    },
-    {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/mipmap-xhdpi/ic_launcher.webp"
-    },
-    {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/mipmap-anydpi-v26/ic_launcher_round.xml"
-    },
-    {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/mipmap-mdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/drawable_eye_close.xml.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/drawable/eye_close.xml"
-    },
-    {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/drawable_icon_002.xml.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/drawable/icon_002.xml"
-    },
-    {
-        "merged": "com.gzq.wanandroid.app-merged_res-73:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "com.gzq.wanandroid.app-main-75:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-merged_res-73:/drawable_icon_002.xml.flat",
+        "source": "/home/gzq/.gradle/daemon/7.5.1/com.gzq.wanandroid.app-main-75:/drawable/icon_002.xml"
     }
 ]
