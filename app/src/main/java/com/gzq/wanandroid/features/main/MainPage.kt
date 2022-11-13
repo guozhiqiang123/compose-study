@@ -1,5 +1,6 @@
 package com.gzq.wanandroid.features.main
 
+import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
@@ -60,9 +61,30 @@ val LocalSnackbarHostState = compositionLocalOf { SnackbarHostState() }
 
 data class BottomNavigationModel(
     val tag: HomeNav,
-    val label: String,
+    @StringRes val labelId: Int,
     val selectIcon: ImageVector,
     val unSelectIcon: ImageVector,
+)
+
+val bottomModels = listOf(
+    BottomNavigationModel(
+        tag = HomeNav.HOME,
+        labelId = R.string.nav_home,
+        selectIcon = Icons.Default.Home,
+        unSelectIcon = Icons.Outlined.Home,
+    ),
+    BottomNavigationModel(
+        tag = HomeNav.PROJECT,
+        labelId = R.string.nav_project,
+        selectIcon = Icons.Default.Build,
+        unSelectIcon = Icons.Outlined.Build,
+    ),
+    BottomNavigationModel(
+        tag = HomeNav.PROFILE,
+        labelId = R.string.nav_profile,
+        selectIcon = Icons.Default.Person,
+        unSelectIcon = Icons.Outlined.Person,
+    ),
 )
 
 @Composable
@@ -86,29 +108,6 @@ fun MainPage(
     val snackbarHostState = remember { SnackbarHostState() }
 
     LogCompositions(msg = "MainPage")
-    val ctx = LocalContext.current
-    val bottomModels = rememberSaveable(ctx) {
-        listOf(
-            BottomNavigationModel(
-                tag = HomeNav.HOME,
-                label = with(ctx) { resources.getString(R.string.nav_home) },
-                selectIcon = Icons.Default.Home,
-                unSelectIcon = Icons.Outlined.Home,
-            ),
-            BottomNavigationModel(
-                tag = HomeNav.PROJECT,
-                label = with(ctx) { resources.getString(R.string.nav_project) },
-                selectIcon = Icons.Default.Build,
-                unSelectIcon = Icons.Outlined.Build,
-            ),
-            BottomNavigationModel(
-                tag = HomeNav.PROFILE,
-                label = with(ctx) { resources.getString(R.string.nav_profile) },
-                selectIcon = Icons.Default.Person,
-                unSelectIcon = Icons.Outlined.Person,
-            ),
-        )
-    }
 
     AndroidTemplateTheme {
         androidx.compose.material.Scaffold(
@@ -123,7 +122,7 @@ fun MainPage(
             },
             drawerContent = if (!appState.shouldShowBottomBar && showNavigationBar) {
                 {
-                    DrawableContentC(bottomModels,isSelect = { model ->
+                    DrawableContentC(isSelect = { model ->
                         selectNav.value == model.tag
                     }) { model ->
                         if (scaffoldState.drawerState.isOpen) {
@@ -153,7 +152,7 @@ fun MainPage(
                     enter = expandHorizontally() + fadeIn(),
                     exit = shrinkVertically() + fadeOut()
                 ) {
-                    BottomNavigationC(bottomModels, isSelect = { model ->
+                    BottomNavigationC(isSelect = { model ->
                         selectNav.value == model.tag
                     }) { model ->
                         selectNav.value = model.tag

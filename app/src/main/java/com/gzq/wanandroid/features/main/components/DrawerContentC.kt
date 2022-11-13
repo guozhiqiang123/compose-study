@@ -16,21 +16,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gzq.wanandroid.features.main.BottomNavigationModel
+import com.gzq.wanandroid.features.main.bottomModels
 
 @Composable
 fun ColumnScope.DrawableContentC(
-    bottomModels: List<BottomNavigationModel>,
     isSelect: (BottomNavigationModel) -> Boolean,
     onClick: (BottomNavigationModel) -> Unit
 ) {
     bottomModels.forEach { model ->
         DrawerTab(
             isSelect = isSelect(model),
-            label = model.label,
+            label = stringResource(id = model.labelId),
             selectIcon = model.selectIcon,
             unSelectIcon = model.unSelectIcon,
             onClick = { onClick(model) }

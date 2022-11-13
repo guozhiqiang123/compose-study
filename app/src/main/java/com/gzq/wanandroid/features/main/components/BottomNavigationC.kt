@@ -17,14 +17,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gzq.wanandroid.features.main.BottomNavigationModel
+import com.gzq.wanandroid.features.main.bottomModels
 
 @Composable
 fun BottomNavigationC(
-    bottomModels: List<BottomNavigationModel>,
     isSelect: (BottomNavigationModel) -> Boolean,
     onClick: (BottomNavigationModel) -> Unit
 ) {
@@ -34,7 +35,7 @@ fun BottomNavigationC(
         bottomModels.forEach { model ->
             BottomTab(
                 isSelect = isSelect(model),
-                label = model.label,
+                label = stringResource(id = model.labelId),
                 selectIcon = model.selectIcon,
                 unSelectIcon = model.unSelectIcon,
                 onClick = { onClick(model) }
