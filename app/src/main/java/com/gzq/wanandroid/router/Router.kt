@@ -26,4 +26,5 @@ sealed class Router(val route: String) {
     object RegisterPage : Router("register")
     object FreeStylePage : Router("free/style")
     object ChangeThemePage : Router("change/theme")
+    object ChangeLanguagePage : Router("change/language")
 }

@@ -11,7 +11,6 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
@@ -24,6 +23,9 @@ enum class Theme {
     Default, Green, Purple
 }
 
+enum class Language {
+    FollowSystem, Chinese, English
+}
 
 /**
  * 保存全局主题
@@ -39,7 +41,6 @@ fun AndroidTemplateTheme(
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-
     val theme by remember { themeState }
 
     val lightColors = when (theme) {

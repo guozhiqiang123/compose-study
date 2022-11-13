@@ -5,6 +5,7 @@ buildscript {
         kotlin_version = '1.7.10'
         nav_version = '2.5.3'
         androidx_lifecycle='2.5.1'
+        core_ktx='1.9.0'
     }
     repositories {
         mavenCentral()

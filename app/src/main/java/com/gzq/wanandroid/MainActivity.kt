@@ -1,5 +1,7 @@
 package com.gzq.wanandroid
 
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,9 +11,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.gzq.wanandroid.core.log.TAG_INFO
+import com.gzq.wanandroid.core.log.TAG_LIFECYCLE
 import com.gzq.wanandroid.features.main.MainPage
 import com.gzq.wanandroid.features.main.rememberAppState
 import timber.log.Timber
+
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
@@ -19,6 +23,7 @@ class MainActivity : ComponentActivity() {
         setTheme(R.style.Theme_AndroidTemplate)
         super.onCreate(savedInstanceState)
 
+        Timber.tag(TAG_LIFECYCLE).d("onCreate")
         setContent {
             val windowSizeClass = calculateWindowSizeClass(this)
             val appState = rememberAppState(windowSizeClass = windowSizeClass)

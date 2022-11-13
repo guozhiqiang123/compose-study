@@ -20,10 +20,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gzq.wanandroid.features.main.BottomNavigationModel
-import com.gzq.wanandroid.features.main.bottomModels
 
 @Composable
 fun ColumnScope.DrawableContentC(
+    bottomModels: List<BottomNavigationModel>,
     isSelect: (BottomNavigationModel) -> Boolean,
     onClick: (BottomNavigationModel) -> Unit
 ) {

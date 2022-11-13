@@ -32,6 +32,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
@@ -41,6 +42,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavOptionsBuilder
 import com.gzq.wanandroid.LocalKey
+import com.gzq.wanandroid.R
 import com.gzq.wanandroid.core.quality.LogCompositions
 import com.gzq.wanandroid.features.main.components.BottomNavigationC
 import com.gzq.wanandroid.features.main.components.DrawableContentC
@@ -61,27 +63,6 @@ data class BottomNavigationModel(
     val label: String,
     val selectIcon: ImageVector,
     val unSelectIcon: ImageVector,
-)
-
-val bottomModels = listOf(
-    BottomNavigationModel(
-        tag = HomeNav.HOME,
-        label = "首页",
-        selectIcon = Icons.Default.Home,
-        unSelectIcon = Icons.Outlined.Home,
-    ),
-    BottomNavigationModel(
-        tag = HomeNav.PROJECT,
-        label = "项目",
-        selectIcon = Icons.Default.Build,
-        unSelectIcon = Icons.Outlined.Build,
-    ),
-    BottomNavigationModel(
-        tag = HomeNav.PROFILE,
-        label = "我的",
-        selectIcon = Icons.Default.Person,
-        unSelectIcon = Icons.Outlined.Person,
-    ),
 )
 
 @Composable
@@ -105,6 +86,29 @@ fun MainPage(
     val snackbarHostState = remember { SnackbarHostState() }
 
     LogCompositions(msg = "MainPage")
+    val ctx = LocalContext.current
+    val bottomModels = rememberSaveable(ctx) {
+        listOf(
+            BottomNavigationModel(
+                tag = HomeNav.HOME,
+                label = with(ctx) { resources.getString(R.string.nav_home) },
+                selectIcon = Icons.Default.Home,
+                unSelectIcon = Icons.Outlined.Home,
+            ),
+            BottomNavigationModel(
+                tag = HomeNav.PROJECT,
+                label = with(ctx) { resources.getString(R.string.nav_project) },
+                selectIcon = Icons.Default.Build,
+                unSelectIcon = Icons.Outlined.Build,
+            ),
+            BottomNavigationModel(
+                tag = HomeNav.PROFILE,
+                label = with(ctx) { resources.getString(R.string.nav_profile) },
+                selectIcon = Icons.Default.Person,
+                unSelectIcon = Icons.Outlined.Person,
+            ),
+        )
+    }
 
     AndroidTemplateTheme {
         androidx.compose.material.Scaffold(
@@ -119,7 +123,7 @@ fun MainPage(
             },
             drawerContent = if (!appState.shouldShowBottomBar && showNavigationBar) {
                 {
-                    DrawableContentC(isSelect = { model ->
+                    DrawableContentC(bottomModels,isSelect = { model ->
                         selectNav.value == model.tag
                     }) { model ->
                         if (scaffoldState.drawerState.isOpen) {
@@ -149,7 +153,7 @@ fun MainPage(
                     enter = expandHorizontally() + fadeIn(),
                     exit = shrinkVertically() + fadeOut()
                 ) {
-                    BottomNavigationC(isSelect = { model ->
+                    BottomNavigationC(bottomModels, isSelect = { model ->
                         selectNav.value == model.tag
                     }) { model ->
                         selectNav.value = model.tag

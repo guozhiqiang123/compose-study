@@ -6,9 +6,11 @@ import androidx.multidex.MultiDex
 import com.github.panpf.sketch.Sketch
 import com.github.panpf.sketch.SketchFactory
 import com.github.panpf.sketch.decode.SvgBitmapDecoder
+import com.gzq.wanandroid.core.log.CrashReportingTree
 import com.gzq.wanandroid.net.NetHelper
 import com.tencent.mmkv.MMKV
-import com.gzq.wanandroid.core.log.CrashReportingTree
+import com.yariksoffice.lingver.Lingver
+import com.yariksoffice.lingver.store.PreferenceLocaleStore
 import timber.log.Timber
 
 class App : Application(), SketchFactory {
@@ -19,6 +21,7 @@ class App : Application(), SketchFactory {
 
     override fun onCreate() {
         super.onCreate()
+        appCtx = this
         //初始化日志库
         Timber.plant(if (BuildConfig.DEBUG) Timber.DebugTree() else CrashReportingTree())
 
@@ -27,6 +30,9 @@ class App : Application(), SketchFactory {
         //初始网络工具类
         NetHelper.init(this)
 
+        //多语言
+        val store = PreferenceLocaleStore(this)
+        Lingver.init(this, store)
     }
 
     /**
@@ -38,5 +44,9 @@ class App : Application(), SketchFactory {
                 addBitmapDecoder(SvgBitmapDecoder.Factory())
             }
         }.build()
+    }
+
+    companion object {
+        lateinit var appCtx: App
     }
 }

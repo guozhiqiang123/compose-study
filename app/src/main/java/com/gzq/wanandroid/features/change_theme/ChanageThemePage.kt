@@ -1,4 +1,4 @@
-package com.gzq.wanandroid.features
+package com.gzq.wanandroid.features.change_theme
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -25,13 +25,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.gzq.wanandroid.LocalKey
 import com.gzq.wanandroid.core.quality.LogCompositions
-import com.gzq.wanandroid.core.quality.recomposeHighlighter
 import com.gzq.wanandroid.router.Router
 import com.gzq.wanandroid.ui.theme.Theme
 import com.gzq.wanandroid.ui.theme.themeState
 import com.gzq.wanandroid.widget.MyTopAppBar
 import com.tencent.mmkv.MMKV
-import timber.log.Timber
 
 
 fun NavGraphBuilder.changeThemePage(
@@ -72,8 +70,8 @@ fun ChangeThemePage(clickBack: () -> Unit) {
                 Modifier
                     .fillMaxWidth()
                     .height(56.dp)
-                    .padding(horizontal = 16.dp)
-                    .clickable { theme = Theme.Default },
+                    .clickable { theme = Theme.Default }
+                    .padding(horizontal = 16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "默认", modifier = Modifier.weight(1.0f))
@@ -84,8 +82,8 @@ fun ChangeThemePage(clickBack: () -> Unit) {
                 Modifier
                     .fillMaxWidth()
                     .height(56.dp)
-                    .padding(horizontal = 16.dp)
-                    .clickable { theme = Theme.Green },
+                    .clickable { theme = Theme.Green }
+                    .padding(horizontal = 16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "绿色", modifier = Modifier.weight(1.0f))
@@ -96,13 +94,14 @@ fun ChangeThemePage(clickBack: () -> Unit) {
                 Modifier
                     .fillMaxWidth()
                     .height(56.dp)
-                    .padding(horizontal = 16.dp)
-                    .clickable { theme = Theme.Purple },
+                    .clickable { theme = Theme.Purple }
+                    .padding(horizontal = 16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "紫色", modifier = Modifier.weight(1.0f))
                 RadioButton(selected = theme == Theme.Purple, onClick = null)
             }
+            Divider(Modifier.padding(horizontal = 16.dp))
         }
     }
 }

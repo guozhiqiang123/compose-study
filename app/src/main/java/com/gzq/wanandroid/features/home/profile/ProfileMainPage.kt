@@ -94,9 +94,12 @@ fun NavGraphBuilder.profileMainPage(
         ProfileMainPage(launchLoginPage = {
             showBottomNavigationBar(false)
             navController.navigate(Router.LoginPage.route)
-        }, loginController = loginController, launchChangeThemePage = {
-            navController.navigate(Router.ChangeThemePage.route)
-        })
+        }, loginController = loginController,
+            launchChangeLanguagePage = {
+                navController.navigate(Router.ChangeLanguagePage.route)
+            }, launchChangeThemePage = {
+                navController.navigate(Router.ChangeThemePage.route)
+            })
     }
 }
 
@@ -106,6 +109,7 @@ fun ProfileMainPage(
     viewModel: ProfileMainViewModel = viewModel(),
     launchLoginPage: () -> Unit,
     loginController: (Boolean, Boolean) -> Unit,
+    launchChangeLanguagePage: () -> Unit,
     launchChangeThemePage: () -> Unit
 ) {
     MyBackHandler()
@@ -171,9 +175,10 @@ fun ProfileMainPage(
             } else {
                 //TODO:检查更新
             }
-        }, showOnDevelop = {
-            showOnDevelopDialog = true
-        }, launchChangeThemePage = launchChangeThemePage)
+        },
+            launchChangeLanguagePage = launchChangeLanguagePage,
+            launchChangeThemePage = launchChangeThemePage
+        )
 
         //头像
         ProfileAvatarC(
@@ -270,7 +275,7 @@ fun MenuList(
     scroll: ScrollState,
     exitLogin: () -> Unit,
     checkUpdate: () -> Unit,
-    showOnDevelop: () -> Unit,
+    launchChangeLanguagePage: () -> Unit,
     launchChangeThemePage: () -> Unit
 ) {
     Column {
@@ -296,7 +301,7 @@ fun MenuList(
                 Column(Modifier.fillMaxWidth()) {
                     MenuNormal()
                     Spacer(modifier = Modifier.height(8.dp))
-                    MenuSetup(showOnDevelop, launchChangeThemePage)
+                    MenuSetup(launchChangeLanguagePage, launchChangeThemePage)
                     Spacer(modifier = Modifier.height(8.dp))
                     MenuAccount(exitLogin, checkUpdate)
                     //为了演示滑动效果，故意增高
@@ -335,7 +340,7 @@ fun MenuNormal() {
 }
 
 @Composable
-fun MenuSetup(showOnDevelop: () -> Unit, launchChangeThemePage: () -> Unit) {
+fun MenuSetup(launchChangeLanguagePage: () -> Unit, launchChangeThemePage: () -> Unit) {
     Column(
         modifier = Modifier
             .padding(top = 8.dp)
@@ -349,7 +354,7 @@ fun MenuSetup(showOnDevelop: () -> Unit, launchChangeThemePage: () -> Unit) {
         Spacer(modifier = Modifier.height(12.dp))
         Card {
             ProfileMenuItemC(iconRes = R.drawable.icon_001, title = "切换语言") {
-                showOnDevelop()
+                launchChangeLanguagePage()
             }
             ProfileMenuItemC(iconRes = R.drawable.icon_002, title = "切换主题") {
                 launchChangeThemePage()
@@ -394,8 +399,11 @@ fun PreviewProfileMainPage() {
     AndroidTemplateTheme {
         ProfileMainPage(launchLoginPage = { /*TODO*/ }, loginController = { login, show ->
 
-        }, launchChangeThemePage = {
-        })
+        },
+            launchChangeLanguagePage = {
+
+            }, launchChangeThemePage = {
+            })
     }
 }
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="app_name">wanandroid</string>
+	<string name="nav_home">Home</string>
+	<string name="nav_project">Project</string>
+	<string name="nav_profile">Profile</string>
+
+</resources>

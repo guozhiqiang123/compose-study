@@ -20,12 +20,11 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.gzq.wanandroid.core.quality.LogCompositions
 import com.gzq.wanandroid.features.main.BottomNavigationModel
-import com.gzq.wanandroid.features.main.bottomModels
 
 @Composable
 fun BottomNavigationC(
+    bottomModels: List<BottomNavigationModel>,
     isSelect: (BottomNavigationModel) -> Boolean,
     onClick: (BottomNavigationModel) -> Unit
 ) {
