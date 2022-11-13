@@ -59,7 +59,8 @@ fun RowScope.BottomTab(
             Text(
                 text = label,
                 fontWeight = if (isSelect) FontWeight.Bold else FontWeight.Normal,
-                fontSize = 12.sp
+                fontSize = 12.sp,
+                color = MaterialTheme.colorScheme.onSurface
             )
         }, icon = {
             Box(Modifier.padding(top = 6.dp), contentAlignment = Alignment.Center) {
@@ -68,7 +69,7 @@ fun RowScope.BottomTab(
                         Modifier
                             .size(width = 44.dp, height = 22.dp)
                             .clip(CircleShape)
-                            .background(MaterialTheme.colorScheme.primary.copy(alpha=ContentAlpha.medium))
+                            .background(MaterialTheme.colorScheme.primary.copy(alpha = ContentAlpha.medium))
                     )
                 }
                 Icon(
@@ -76,6 +77,7 @@ fun RowScope.BottomTab(
                     contentDescription = null,
                     Modifier
                         .size(24.dp),
+                    tint = MaterialTheme.colorScheme.onSurface
                 )
             }
         },

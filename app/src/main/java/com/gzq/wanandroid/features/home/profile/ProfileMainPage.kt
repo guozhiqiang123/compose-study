@@ -94,7 +94,9 @@ fun NavGraphBuilder.profileMainPage(
         ProfileMainPage(launchLoginPage = {
             showBottomNavigationBar(false)
             navController.navigate(Router.LoginPage.route)
-        }, loginController = loginController)
+        }, loginController = loginController, launchChangeThemePage = {
+            navController.navigate(Router.ChangeThemePage.route)
+        })
     }
 }
 
@@ -103,7 +105,8 @@ fun ProfileMainPage(
     modifier: Modifier = Modifier,
     viewModel: ProfileMainViewModel = viewModel(),
     launchLoginPage: () -> Unit,
-    loginController: (Boolean, Boolean) -> Unit
+    loginController: (Boolean, Boolean) -> Unit,
+    launchChangeThemePage: () -> Unit
 ) {
     MyBackHandler()
 
@@ -170,7 +173,7 @@ fun ProfileMainPage(
             }
         }, showOnDevelop = {
             showOnDevelopDialog = true
-        })
+        }, launchChangeThemePage = launchChangeThemePage)
 
         //头像
         ProfileAvatarC(
@@ -268,6 +271,7 @@ fun MenuList(
     exitLogin: () -> Unit,
     checkUpdate: () -> Unit,
     showOnDevelop: () -> Unit,
+    launchChangeThemePage: () -> Unit
 ) {
     Column {
         Spacer(
@@ -286,12 +290,13 @@ fun MenuList(
             Surface(
                 Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
+                color = MaterialTheme.colorScheme.surface,
                 elevation = 8.dp
             ) {
                 Column(Modifier.fillMaxWidth()) {
                     MenuNormal()
                     Spacer(modifier = Modifier.height(8.dp))
-                    MenuSetup(showOnDevelop)
+                    MenuSetup(showOnDevelop, launchChangeThemePage)
                     Spacer(modifier = Modifier.height(8.dp))
                     MenuAccount(exitLogin, checkUpdate)
                     //为了演示滑动效果，故意增高
@@ -310,7 +315,10 @@ fun MenuNormal() {
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
     ) {
-        Text(text = "常规", style = MaterialTheme.typography.titleMedium)
+        Text(
+            text = "常规",
+            style = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.onSurface)
+        )
         Spacer(modifier = Modifier.height(12.dp))
         Card {
             ProfileMenuItemC(iconRes = R.drawable.icon_001, title = "隐私政策") {
@@ -327,21 +335,24 @@ fun MenuNormal() {
 }
 
 @Composable
-fun MenuSetup(showOnDevelop: () -> Unit) {
+fun MenuSetup(showOnDevelop: () -> Unit, launchChangeThemePage: () -> Unit) {
     Column(
         modifier = Modifier
             .padding(top = 8.dp)
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
     ) {
-        Text(text = "设置", style = MaterialTheme.typography.titleMedium)
+        Text(
+            text = "设置",
+            style = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.onSurface)
+        )
         Spacer(modifier = Modifier.height(12.dp))
         Card {
             ProfileMenuItemC(iconRes = R.drawable.icon_001, title = "切换语言") {
                 showOnDevelop()
             }
             ProfileMenuItemC(iconRes = R.drawable.icon_002, title = "切换主题") {
-                showOnDevelop()
+                launchChangeThemePage()
             }
         }
     }
@@ -355,7 +366,10 @@ fun MenuAccount(exitLogin: () -> Unit, checkUpdate: () -> Unit) {
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
     ) {
-        Text(text = "账户", style = MaterialTheme.typography.titleMedium)
+        Text(
+            text = "账户",
+            style = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.onSurface)
+        )
         Spacer(modifier = Modifier.height(12.dp))
         Card {
             if (LocalLoginState.current) {
@@ -380,6 +394,7 @@ fun PreviewProfileMainPage() {
     AndroidTemplateTheme {
         ProfileMainPage(launchLoginPage = { /*TODO*/ }, loginController = { login, show ->
 
+        }, launchChangeThemePage = {
         })
     }
 }

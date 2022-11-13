@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import com.gzq.wanandroid.features.changeThemePage
 import com.gzq.wanandroid.features.details.detailPage
 import com.gzq.wanandroid.features.free_style.freeStylePage
 import com.gzq.wanandroid.features.home.home.homeMainPage
@@ -52,6 +53,8 @@ fun RouterRegister(
         registerPage(navController)
 
         freeStylePage(navController)
+
+        changeThemePage(navController)
     }
 }
 

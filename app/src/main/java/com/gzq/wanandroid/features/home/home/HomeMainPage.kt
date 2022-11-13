@@ -20,6 +20,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -76,12 +77,13 @@ fun HomeMainPage(
         pageState,
         modifier.recomposeHighlighter()
     ) { data ->
+        val isDark = isSystemInDarkTheme()
         Column {
             Surface(elevation = 4.dp) {
                 ScrollableTabRow(
                     selectedTabIndex = selectTab,
                     backgroundColor =
-                    if (isSystemInDarkTheme()) MaterialTheme.colorScheme.surface
+                    if (isDark) MaterialTheme.colorScheme.surface
                     else MaterialTheme.colorScheme.primary,
                     edgePadding = 0.dp,
                     indicator = {
@@ -95,7 +97,8 @@ fun HomeMainPage(
                     tabs.forEachIndexed { index, s ->
                         Tab(
                             selected = index == selectTab,
-                            selectedContentColor = MaterialTheme.colorScheme.onPrimary,
+                            selectedContentColor = if (isDark) MaterialTheme.colorScheme.onSurface
+                            else MaterialTheme.colorScheme.onPrimary,
                             onClick = {
                                 //重复点击同一个tab，不做任何操作
                                 if (selectTab == index) {
@@ -129,7 +132,8 @@ fun HomeMainPage(
                  */
                 itemsIndexed(
                     items = data ?: emptyList(),
-                    key = { _, item -> item.id }) { index, item ->
+//                    key = { _, item -> item.id }
+                ) { index, item ->
 
 //                    // 侧滑删除所需State
 //                    val dismissState = rememberDismissState()
