@@ -1,5 +1,6 @@
 package com.gzq.wanandroid.features.home.profile
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -40,7 +41,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -193,7 +196,7 @@ fun ProfileMainPage(
 
         //用户名
         ProfileUserNameC(
-            if (userInfo == null) "登录/注册"
+            if (userInfo == null) stringResource(id = R.string.sign_in_up)
             else userInfo!!.nickname ?: ""
         ) { scroll.value }
     }
@@ -242,16 +245,16 @@ fun BaseUserInfo() {
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
     ) {
         Row(Modifier.height(80.dp)) {
-            BaseUserInfoItem(label = "收藏", value = "4")
-            BaseUserInfoItem(label = "分享", value = "1")
-            BaseUserInfoItem(label = "积分", value = "541")
-            BaseUserInfoItem(label = "历史", value = "41")
+            BaseUserInfoItem(labelId = R.string.collection, value = "4")
+            BaseUserInfoItem(labelId = R.string.share, value = "1")
+            BaseUserInfoItem(labelId = R.string.rewards_points, value = "541")
+            BaseUserInfoItem(labelId = R.string.history, value = "41")
         }
     }
 }
 
 @Composable
-fun RowScope.BaseUserInfoItem(label: String, value: String) {
+fun RowScope.BaseUserInfoItem(@StringRes labelId: Int, value: String) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -265,7 +268,7 @@ fun RowScope.BaseUserInfoItem(label: String, value: String) {
             style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)
         )
         Spacer(modifier = Modifier.height(10.dp))
-        Text(text = label)
+        Text(text = stringResource(id = labelId), maxLines = 1, overflow = TextOverflow.Ellipsis)
     }
 }
 
@@ -321,18 +324,21 @@ fun MenuNormal() {
             .padding(horizontal = 16.dp)
     ) {
         Text(
-            text = "常规",
+            text = stringResource(id = R.string.menu_normal),
             style = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.onSurface)
         )
         Spacer(modifier = Modifier.height(12.dp))
         Card {
-            ProfileMenuItemC(iconRes = R.drawable.icon_001, title = "隐私政策") {
+            ProfileMenuItemC(iconRes = R.drawable.icon_001, title = R.string.privacy_policy) {
 
             }
-            ProfileMenuItemC(iconRes = R.drawable.icon_002, title = "用户协议") {
+            ProfileMenuItemC(iconRes = R.drawable.icon_002, title = R.string.user_service) {
 
             }
-            ProfileMenuItemC(iconRes = R.drawable.icon_004, title = "开源项目") {
+            ProfileMenuItemC(
+                iconRes = R.drawable.icon_004,
+                title = R.string.open_source_libraries
+            ) {
 
             }
         }
@@ -348,15 +354,15 @@ fun MenuSetup(launchChangeLanguagePage: () -> Unit, launchChangeThemePage: () ->
             .padding(horizontal = 16.dp)
     ) {
         Text(
-            text = "设置",
+            text = stringResource(id = R.string.menu_settings),
             style = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.onSurface)
         )
         Spacer(modifier = Modifier.height(12.dp))
         Card {
-            ProfileMenuItemC(iconRes = R.drawable.icon_001, title = "切换语言") {
+            ProfileMenuItemC(iconRes = R.drawable.icon_001, title = R.string.change_language) {
                 launchChangeLanguagePage()
             }
-            ProfileMenuItemC(iconRes = R.drawable.icon_002, title = "切换主题") {
+            ProfileMenuItemC(iconRes = R.drawable.icon_002, title = R.string.change_theme) {
                 launchChangeThemePage()
             }
         }
@@ -372,7 +378,7 @@ fun MenuAccount(exitLogin: () -> Unit, checkUpdate: () -> Unit) {
             .padding(horizontal = 16.dp)
     ) {
         Text(
-            text = "账户",
+            text = stringResource(id = R.string.menu_account),
             style = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.onSurface)
         )
         Spacer(modifier = Modifier.height(12.dp))
@@ -380,13 +386,13 @@ fun MenuAccount(exitLogin: () -> Unit, checkUpdate: () -> Unit) {
             if (LocalLoginState.current) {
                 ProfileMenuItemC(
                     iconRes = R.drawable.icon_001,
-                    title = "退出登录",
+                    title = R.string.sign_out,
                     onClick = exitLogin
                 )
             }
             ProfileMenuItemC(
                 iconRes = R.drawable.icon_002,
-                title = "检查更新",
+                title = R.string.check_update,
                 onClick = checkUpdate
             )
         }

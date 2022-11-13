@@ -23,11 +23,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.gzq.wanandroid.MainActivity
+import com.gzq.wanandroid.R
 import com.gzq.wanandroid.router.Router
 import com.gzq.wanandroid.widget.MyTopAppBar
 import com.yariksoffice.lingver.Lingver
@@ -67,7 +69,7 @@ fun ChangeThemePage(clickBack: () -> Unit) {
     }
 
     Scaffold(topBar = {
-        MyTopAppBar(titleStr = "切换语言", clickBack = clickBack)
+        MyTopAppBar(titleStr = stringResource(id = R.string.change_language), clickBack = clickBack)
     }) { paddingValues ->
         Column(
             modifier = Modifier
@@ -91,7 +93,10 @@ fun ChangeThemePage(clickBack: () -> Unit) {
                     .padding(horizontal = 16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "跟随系统", modifier = Modifier.weight(1.0f))
+                Text(
+                    text = stringResource(id = R.string.follow_system),
+                    modifier = Modifier.weight(1.0f)
+                )
                 RadioButton(
                     selected = Lingver.getInstance().isFollowingSystemLocale(),
                     onClick = null
@@ -140,7 +145,10 @@ fun ChangeThemePage(clickBack: () -> Unit) {
                     .padding(horizontal = 16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "英文", modifier = Modifier.weight(1.0f))
+                Text(
+                    text = stringResource(id = R.string.language_english),
+                    modifier = Modifier.weight(1.0f)
+                )
                 RadioButton(selected = language == Locale.ENGLISH, onClick = null)
             }
             Divider(Modifier.padding(horizontal = 16.dp))

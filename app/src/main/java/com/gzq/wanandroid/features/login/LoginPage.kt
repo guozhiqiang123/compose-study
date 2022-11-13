@@ -41,6 +41,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -168,11 +169,11 @@ fun LoginPage(
                         },
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Text(text = "登录")
+                        Text(text = stringResource(id = R.string.sign_in))
                     }
 
                     TextButton(onClick = launchRegisterPage) {
-                        Text(text = "新用户注册")
+                        Text(text = stringResource(id = R.string.sign_up))
                     }
                     Spacer(modifier = Modifier.weight(1.0f))
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -211,14 +212,14 @@ fun NameAndPassword(
         leadingIcon = {
             Image(
                 imageVector = Icons.Default.Person,
-                contentDescription = "用户名"
+                contentDescription = stringResource(id = R.string.user_name)
             )
         },
         label = {
-            Text("请输入用户名")
+            Text(stringResource(id = R.string.please_input_user_name))
         },
         placeholder = {
-            Text(text = "不能包含特殊符号")
+            Text(text = stringResource(id = R.string.cannot_contain_special_characters))
         },
         maxLines = 1,
         modifier = Modifier.fillMaxWidth()
@@ -250,15 +251,15 @@ fun NameAndPassword(
                     if (pwdTransform is PasswordVisualTransformation)
                         R.drawable.eye_close
                     else R.drawable.eye_open
-                ), contentDescription = "显示/隐藏密码"
+                ), contentDescription = stringResource(id = R.string.display_hide_password)
             )
 
         },
         label = {
-            Text("请输入密码")
+            Text(stringResource(id = R.string.please_input_password))
         },
         placeholder = {
-            Text(text = "密码长度不少于6个字符")
+            Text(text = stringResource(id = R.string.password_at_least_length))
         },
         visualTransformation = pwdTransform,
         maxLines = 1,
@@ -279,23 +280,24 @@ fun PolicyText(
     val userTag = "UserPolicy"
 
     val text = buildAnnotatedString {
-        append("我已阅读")
+        append(stringResource(id = R.string.i_had_read))
 
         pushStringAnnotation(
             tag = privacyTag,
             annotation = privacyUrl
         )
         withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
-            append("《隐私政策》")
+            append("《${stringResource(id = R.string.privacy_policy)}》")
         }
-        append("和")
+
+        append(stringResource(id = R.string.and))
 
         pushStringAnnotation(
             tag = userTag,
             annotation = userUrl
         )
         withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
-            append("《用户协议》")
+            append("《${stringResource(id = R.string.user_service)}》")
         }
         pop()
     }

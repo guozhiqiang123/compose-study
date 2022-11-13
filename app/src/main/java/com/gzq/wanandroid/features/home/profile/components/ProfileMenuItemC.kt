@@ -1,6 +1,7 @@
 package com.gzq.wanandroid.features.home.profile.components
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -15,11 +16,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.gzq.wanandroid.R
 
 @Composable
-fun ProfileMenuItemC(@DrawableRes iconRes: Int, title: String, onClick: () -> Unit) {
+fun ProfileMenuItemC(@DrawableRes iconRes: Int, @StringRes title: Int, onClick: () -> Unit) {
     Row(
         Modifier
             .height(54.dp)
@@ -34,7 +36,7 @@ fun ProfileMenuItemC(@DrawableRes iconRes: Int, title: String, onClick: () -> Un
             tint = Color.Unspecified
         )
         Spacer(modifier = Modifier.width(12.dp))
-        Text(text = title, style = MaterialTheme.typography.bodyMedium)
+        Text(text = stringResource(id = title), style = MaterialTheme.typography.bodyMedium)
         Spacer(modifier = Modifier.weight(1.0f))
         Icon(
             painter = painterResource(id = R.drawable.navigate_next),

@@ -12,9 +12,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.ColorUtils
+import com.gzq.wanandroid.R
 import com.gzq.wanandroid.core.page.PageState
 
 /**
@@ -31,17 +33,26 @@ fun <T> PageHolder(
         ) {
             CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
             Spacer(modifier = Modifier.height(12.dp))
-            Text(text = "正在加载")
+            Text(text = stringResource(id = R.string.on_loading))
         }
     },
     emptyComponentBlock: @Composable BoxScope.() -> Unit = {
-        Text(text = "暂无数据", modifier = Modifier.align(Alignment.Center))
+        Text(
+            text = stringResource(id = R.string.no_data),
+            modifier = Modifier.align(Alignment.Center)
+        )
     },
     errorComponentBlock: @Composable BoxScope.() -> Unit = {
-        Text(text = "出错了~", modifier = Modifier.align(Alignment.Center))
+        Text(
+            text = stringResource(id = R.string.wrong),
+            modifier = Modifier.align(Alignment.Center)
+        )
     },
     comingSoonComponentBlock: @Composable BoxScope.() -> Unit = {
-        Text(text = "该功能正在开发中", modifier = Modifier.align(Alignment.Center))
+        Text(
+            text = stringResource(id = R.string.on_developing),
+            modifier = Modifier.align(Alignment.Center)
+        )
     },
     content: @Composable (T?) -> Unit
 ) {

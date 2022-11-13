@@ -5,6 +5,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import com.gzq.wanandroid.R
 
 @Composable
 fun LogoutDialogC(onDismiss: () -> Unit, confirm: () -> Unit) {
@@ -12,18 +14,18 @@ fun LogoutDialogC(onDismiss: () -> Unit, confirm: () -> Unit) {
         onDismissRequest = onDismiss,
         text = {
             Text(
-                text = "确定退出登录吗？",
+                text = stringResource(id = R.string.sure_sign_out),
                 style = MaterialTheme.typography.titleMedium
             )
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text(text = "取消")
+                Text(text = stringResource(id = R.string.cancel))
             }
         },
         confirmButton = {
             TextButton(onClick = confirm) {
-                Text(text = "确定")
+                Text(text = stringResource(id = R.string.confirm))
             }
         }
     )

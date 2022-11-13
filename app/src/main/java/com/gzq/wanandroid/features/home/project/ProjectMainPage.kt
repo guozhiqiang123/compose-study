@@ -9,10 +9,12 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
+import com.gzq.wanandroid.R
 import com.gzq.wanandroid.core.preview.DevicePreviews
 import com.gzq.wanandroid.core.preview.ThemePreviews
 import com.gzq.wanandroid.exit_app.MyBackHandler
@@ -22,7 +24,7 @@ fun NavGraphBuilder.projectMainPage(
     navController: NavHostController,
 ) {
     composable(Router.ProjectPage.route) {
-        ProjectMainPage( routeGlideImagePage = {
+        ProjectMainPage(routeGlideImagePage = {
             navController.navigate(Router.GlideImagePage.route)
         }, routeCoilImagePage = {
             navController.navigate(Router.CoilImagePage.route)
@@ -34,8 +36,6 @@ fun NavGraphBuilder.projectMainPage(
     }
 }
 
-@ThemePreviews
-@DevicePreviews
 @Composable
 fun ProjectMainPage(
     modifier: Modifier = Modifier,
@@ -55,7 +55,7 @@ fun ProjectMainPage(
                 onClick = routeGlideImagePage ?: {},
                 Modifier.fillMaxWidth()
             ) {
-                Text(text = "Glide加载图片")
+                Text(text = stringResource(id = R.string.glide_load_image))
             }
         }
         item {
@@ -63,7 +63,7 @@ fun ProjectMainPage(
                 onClick = routeCoilImagePage ?: {},
                 Modifier.fillMaxWidth()
             ) {
-                Text(text = "Coil加载图片")
+                Text(text = stringResource(id = R.string.coil_load_image))
             }
         }
         item {
@@ -71,7 +71,7 @@ fun ProjectMainPage(
                 onClick = routeSketchImagePage ?: {},
                 Modifier.fillMaxWidth()
             ) {
-                Text(text = "Sketch加载图片")
+                Text(text = stringResource(id = R.string.sketch_load_image))
             }
         }
         item {
@@ -79,7 +79,7 @@ fun ProjectMainPage(
                 onClick = routeFreeStylePage ?: {},
                 Modifier.fillMaxWidth()
             ) {
-                Text(text = "自由测试项目")
+                Text(text = stringResource(id = R.string.free_style_projects))
             }
         }
     }

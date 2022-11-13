@@ -19,11 +19,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.gzq.wanandroid.LocalKey
+import com.gzq.wanandroid.R
 import com.gzq.wanandroid.core.quality.LogCompositions
 import com.gzq.wanandroid.router.Router
 import com.gzq.wanandroid.ui.theme.Theme
@@ -51,7 +53,7 @@ fun ChangeThemePage(clickBack: () -> Unit) {
     LogCompositions(msg = "ChangeThemePage")
 
     Scaffold(topBar = {
-        MyTopAppBar(titleStr = "切换主题", clickBack = clickBack)
+        MyTopAppBar(titleStr = stringResource(id = R.string.change_theme), clickBack = clickBack)
     }) { paddingValues ->
 
 
@@ -74,7 +76,10 @@ fun ChangeThemePage(clickBack: () -> Unit) {
                     .padding(horizontal = 16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "默认", modifier = Modifier.weight(1.0f))
+                Text(
+                    text = stringResource(id = R.string.theme_default),
+                    modifier = Modifier.weight(1.0f)
+                )
                 RadioButton(selected = theme == Theme.Default, onClick = null)
             }
             Divider(Modifier.padding(horizontal = 16.dp))
@@ -86,7 +91,10 @@ fun ChangeThemePage(clickBack: () -> Unit) {
                     .padding(horizontal = 16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "绿色", modifier = Modifier.weight(1.0f))
+                Text(
+                    text = stringResource(id = R.string.theme_green),
+                    modifier = Modifier.weight(1.0f)
+                )
                 RadioButton(selected = theme == Theme.Green, onClick = null)
             }
             Divider(Modifier.padding(horizontal = 16.dp))
@@ -98,7 +106,10 @@ fun ChangeThemePage(clickBack: () -> Unit) {
                     .padding(horizontal = 16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "紫色", modifier = Modifier.weight(1.0f))
+                Text(
+                    text = stringResource(id = R.string.theme_purple),
+                    modifier = Modifier.weight(1.0f)
+                )
                 RadioButton(selected = theme == Theme.Purple, onClick = null)
             }
             Divider(Modifier.padding(horizontal = 16.dp))
