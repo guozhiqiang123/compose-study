@@ -23,10 +23,6 @@ enum class Theme {
     Default, Green, Purple
 }
 
-enum class Language {
-    FollowSystem, Chinese, English
-}
-
 /**
  * 保存全局主题
  */
@@ -35,10 +31,19 @@ val themeState by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
     mutableStateOf(Theme.valueOf(themeString ?: "default"))
 }
 
+/**
+ * material3适配
+ * 默认：适配
+ */
+val dynamicThemeState by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
+    val dynamicColor = MMKV.defaultMMKV().decodeBool(LocalKey.KEY_DYNAMIC_COLOR, true)
+    mutableStateOf(dynamicColor)
+}
+
 @Composable
 fun AndroidTemplateTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = dynamicThemeState.value,
     content: @Composable () -> Unit
 ) {
     val theme by remember { themeState }
