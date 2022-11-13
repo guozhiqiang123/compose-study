@@ -1,11 +1,15 @@
 package com.gzq.wanandroid.widget
 
 import android.app.Activity
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -23,10 +27,12 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.webkit.WebSettingsCompat
 import androidx.webkit.WebViewFeature
+import com.gzq.wanandroid.core.log.TAG_WEBVIEW
 import com.just.agentweb.AgentWeb
 import com.just.agentweb.DefaultWebClient
 import com.just.agentweb.WebChromeClient
 import com.just.agentweb.WebViewClient
+import timber.log.Timber
 
 enum class WebViewPageState {
     Start, Finish, Error
@@ -71,6 +77,28 @@ class CustomWebViewClient(private val onEvent: ((WebViewEvent) -> Unit)? = null)
         super.onReceivedError(view, request, error)
         onEvent?.invoke(WebViewEvent.PageState(WebViewPageState.Error))
     }
+
+    override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
+        Timber.tag(TAG_WEBVIEW).d("url:${request.url},method:${request.method}")
+        if (shouldOverrideUrlByApp(view, request.url.toString())) return true
+        return super.shouldOverrideUrlLoading(view, request)
+    }
+
+    private fun shouldOverrideUrlByApp(view: WebView, url: String): Boolean {
+        if (url.startsWith("http") || url.startsWith("ftp")) return false
+        try {
+            Intent.parseUri(url, Intent.URI_INTENT_SCHEME).also {
+                (view.context as Activity).startActivity(it)
+            }
+        } catch (e: Exception) {
+            Timber.tag(TAG_WEBVIEW).e(e)
+            if (e is ActivityNotFoundException) {
+                Toast.makeText(view.context, "未安装APP", Toast.LENGTH_SHORT).show()
+            }
+            return false
+        }
+        return true
+    }
 }
 
 @Composable
@@ -83,7 +111,7 @@ fun CustomWebView(
 ) {
     var agentWeb by remember { mutableStateOf<AgentWeb?>(null) }
 
-    val indicatorColor =MaterialTheme.colorScheme.primary.toArgb()
+    val indicatorColor = MaterialTheme.colorScheme.primary.toArgb()
 
     BackHandler {
         clickBack(agentWeb?.back() == false)
