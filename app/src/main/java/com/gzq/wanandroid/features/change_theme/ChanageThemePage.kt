@@ -2,6 +2,7 @@ package com.gzq.wanandroid.features.change_theme
 
 import android.os.Build
 import android.text.style.DynamicDrawableSpan
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -61,14 +62,22 @@ fun ChangeThemePage(clickBack: () -> Unit) {
                 .padding(paddingValues)
         ) {
             //处理material3的动态主题
-            if (dynamicThemeState.value && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                DynamicThemeC()
-            } else {
-                StaticThemeC()
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                    DynamicThemeC()
+            AnimatedVisibility(visible = !dynamicThemeState.value || Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+                Column(Modifier.fillMaxWidth()) {
+                    StaticThemeC()
                 }
             }
+            AnimatedVisibility(visible = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                DynamicThemeC()
+            }
+//            if (dynamicThemeState.value && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+//                DynamicThemeC()
+//            } else {
+//                StaticThemeC()
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+//                    DynamicThemeC()
+//                }
+//            }
         }
     }
 }
