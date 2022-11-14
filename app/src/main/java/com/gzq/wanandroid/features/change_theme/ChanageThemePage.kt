@@ -3,6 +3,7 @@ package com.gzq.wanandroid.features.change_theme
 import android.os.Build
 import android.text.style.DynamicDrawableSpan
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,7 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.composable
+import com.google.accompanist.navigation.animation.composable
 import com.gzq.wanandroid.LocalKey
 import com.gzq.wanandroid.R
 import com.gzq.wanandroid.router.Router
@@ -38,6 +39,7 @@ import com.gzq.wanandroid.widget.MyTopAppBar
 import com.tencent.mmkv.MMKV
 
 
+@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.changeThemePage(
     navController: NavHostController
 ) {

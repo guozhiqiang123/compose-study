@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.activity.compose.BackHandler
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -31,7 +32,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.composable
+import com.google.accompanist.navigation.animation.composable
 import com.gzq.wanandroid.R
 import com.gzq.wanandroid.router.Router
 import com.gzq.wanandroid.router.isHomePage
@@ -39,9 +40,8 @@ import com.gzq.wanandroid.ui.theme.AndroidTemplateTheme
 import com.gzq.wanandroid.widget.CustomWebView
 import com.gzq.wanandroid.widget.MyTopAppBar
 import com.gzq.wanandroid.widget.WebViewEvent
-import timber.log.Timber
-import java.util.TimeZone
 
+@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.detailPage(
     navController: NavHostController,
     showBottomNavigationBar: (Boolean) -> Unit

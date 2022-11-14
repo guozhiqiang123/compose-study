@@ -1,5 +1,6 @@
 package com.gzq.wanandroid.features.home.project.pages
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -18,22 +19,20 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.composable
 import com.github.panpf.sketch.compose.AsyncImage
-import com.github.panpf.sketch.request.DisplayRequest
 import com.github.panpf.sketch.request.svgBackgroundColor
-import com.github.panpf.sketch.request.svgCss
+import com.google.accompanist.navigation.animation.composable
 import com.gzq.wanandroid.core.preview.DevicePreviews
 import com.gzq.wanandroid.core.preview.ThemePreviews
 import com.gzq.wanandroid.router.Router
 import com.gzq.wanandroid.ui.theme.AndroidTemplateTheme
 import com.gzq.wanandroid.widget.MyTopAppBar
 
+@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.sketchImagePage(navController: NavHostController) {
     composable(Router.SketchImagePage.route) {
         SketchImagePage() {

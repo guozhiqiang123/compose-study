@@ -1,6 +1,7 @@
 package com.gzq.wanandroid.features.home.profile
 
 import androidx.annotation.StringRes
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -50,7 +51,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.composable
+import com.google.accompanist.navigation.animation.composable
 import com.gzq.wanandroid.R
 import com.gzq.wanandroid.exit_app.MyBackHandler
 import com.gzq.wanandroid.features.home.profile.components.LoginWarningDialogC
@@ -88,6 +89,7 @@ internal val ExpandedTextOffsetY = ExpandedImageOffsetY + ExpandedImageSize / 2 
 internal val CollapsedTextOffsetY = CollapsedAppBarHeight / 2 - 20.dp / 2
 
 
+@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.profileMainPage(
     navController: NavHostController,
     loginController: (Boolean, Boolean) -> Unit,

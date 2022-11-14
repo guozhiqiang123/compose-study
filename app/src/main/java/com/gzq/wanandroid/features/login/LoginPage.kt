@@ -1,5 +1,7 @@
 package com.gzq.wanandroid.features.login
 
+import androidx.activity.compose.BackHandler
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -52,7 +54,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.composable
+import com.google.accompanist.navigation.animation.composable
 import com.gzq.wanandroid.R
 import com.gzq.wanandroid.core.extension.DisposableRepeatEffect
 import com.gzq.wanandroid.features.main.LocalSnackbarHostState
@@ -62,6 +64,7 @@ import com.gzq.wanandroid.widget.CustomSnackBar
 import com.gzq.wanandroid.widget.MyTopAppBar
 import com.gzq.wanandroid.widget.SnackBarState
 
+@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.loginPage(
     navController: NavHostController,
     loginController: (Boolean, Boolean) -> Unit,
@@ -106,6 +109,7 @@ fun LoginPage(
     launchUserPage: (String) -> Unit,
     clickBack: () -> Unit
 ) {
+    BackHandler(onBack = clickBack)
 
     val nameTextField = rememberSaveable { mutableStateOf("") }
     val pwdTextField = rememberSaveable { mutableStateOf("") }

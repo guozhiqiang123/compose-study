@@ -1,6 +1,7 @@
 package com.gzq.wanandroid.features.home.project.pages
 
 import android.media.Image
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,16 +21,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.composable
 import coil.compose.AsyncImage
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
+import com.google.accompanist.navigation.animation.composable
 import com.gzq.wanandroid.core.preview.DevicePreviews
 import com.gzq.wanandroid.core.preview.ThemePreviews
 import com.gzq.wanandroid.router.Router
 import com.gzq.wanandroid.ui.theme.AndroidTemplateTheme
 import com.gzq.wanandroid.widget.MyTopAppBar
 
+@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.coilImagePage(navController: NavHostController) {
     composable(Router.CoilImagePage.route) {
         CoilImagePage() {

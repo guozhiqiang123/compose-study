@@ -1,6 +1,7 @@
 package com.gzq.wanandroid.features.free_style
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
@@ -40,7 +41,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.composable
+import com.google.accompanist.navigation.animation.composable
 import com.gzq.wanandroid.core.quality.LogCompositions
 import com.gzq.wanandroid.core.quality.recomposeHighlighter
 import com.gzq.wanandroid.router.Router
@@ -48,6 +49,7 @@ import com.gzq.wanandroid.ui.theme.AndroidTemplateTheme
 import com.gzq.wanandroid.widget.MyTopAppBar
 import timber.log.Timber
 
+@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.freeStylePage(
     navController: NavHostController
 ) {

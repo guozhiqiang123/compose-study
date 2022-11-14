@@ -1,10 +1,18 @@
 package com.gzq.wanandroid.router
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
+import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.gzq.wanandroid.features.change_language.changeLanguagePage
 import com.gzq.wanandroid.features.change_theme.changeThemePage
 import com.gzq.wanandroid.features.details.detailPage
@@ -18,6 +26,7 @@ import com.gzq.wanandroid.features.home.project.projectMainPage
 import com.gzq.wanandroid.features.login.loginPage
 import com.gzq.wanandroid.features.register.registerPage
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun RouterRegister(
     navController: NavHostController,
@@ -25,10 +34,30 @@ fun RouterRegister(
     showBottomNavigationBar: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    NavHost(
+    AnimatedNavHost(
         navController = navController,
         startDestination = Router.HomePage.route,
-        modifier = modifier
+        modifier = modifier,
+        enterTransition = {
+            if (targetState.isHomePage()) {
+                fadeIn(animationSpec = tween(700))
+            } else {
+                slideInHorizontally(initialOffsetX = { it })
+            }
+        },
+        exitTransition = {
+            fadeOut(animationSpec = tween(700))
+        },
+        popEnterTransition = {
+            fadeIn(animationSpec = tween(700))
+        },
+        popExitTransition = {
+            if (initialState.isHomePage()) {
+                fadeOut(animationSpec = tween(700))
+            } else {
+                slideOutHorizontally(targetOffsetX = { it })
+            }
+        }
     ) {
 
         /**
@@ -65,8 +94,9 @@ fun RouterRegister(
  * 判断是不是回到主页面
  */
 fun NavBackStackEntry.isHomePage(): Boolean {
-    val route = this.destination.route
-    return route == Router.HomePage.route
-            || route == Router.ProjectPage.route
-            || route == Router.ProfilePage.route
+    return destination.hierarchy.any {
+        it.route == Router.HomePage.route
+                || it.route == Router.ProjectPage.route
+                || it.route == Router.ProfilePage.route
+    }
 }

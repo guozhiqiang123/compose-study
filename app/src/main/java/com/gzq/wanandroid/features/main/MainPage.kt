@@ -2,6 +2,10 @@ package com.gzq.wanandroid.features.main
 
 import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.VisibilityThreshold
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -38,6 +42,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.DpSize
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -149,8 +154,13 @@ fun MainPage(
             bottomBar = {
                 AnimatedVisibility(
                     visible = appState.shouldShowBottomBar && showNavigationBar,
-                    enter = expandHorizontally() + fadeIn(),
-                    exit = shrinkVertically() + fadeOut()
+                    enter = fadeIn(),
+                    exit = shrinkVertically(
+                        animationSpec = spring(
+                            stiffness = Spring.StiffnessLow,
+                            visibilityThreshold = IntSize.VisibilityThreshold
+                        )
+                    )
                 ) {
                     BottomNavigationC(isSelect = { model ->
                         selectNav.value == model.tag

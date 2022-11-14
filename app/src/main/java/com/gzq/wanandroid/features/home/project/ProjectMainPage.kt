@@ -1,11 +1,11 @@
 package com.gzq.wanandroid.features.home.project
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -13,13 +13,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.composable
+import com.google.accompanist.navigation.animation.composable
 import com.gzq.wanandroid.R
-import com.gzq.wanandroid.core.preview.DevicePreviews
-import com.gzq.wanandroid.core.preview.ThemePreviews
 import com.gzq.wanandroid.exit_app.MyBackHandler
 import com.gzq.wanandroid.router.Router
 
+@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.projectMainPage(
     navController: NavHostController,
 ) {

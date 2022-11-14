@@ -1,6 +1,7 @@
 package com.gzq.wanandroid.features.change_language
 
 import android.content.Intent
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,7 +16,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,7 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.composable
+import com.google.accompanist.navigation.animation.composable
 import com.gzq.wanandroid.MainActivity
 import com.gzq.wanandroid.R
 import com.gzq.wanandroid.router.Router
@@ -36,6 +36,7 @@ import com.yariksoffice.lingver.Lingver
 import java.util.Locale
 
 
+@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.changeLanguagePage(
     navController: NavHostController
 ) {

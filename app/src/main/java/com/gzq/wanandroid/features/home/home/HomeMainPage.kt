@@ -1,5 +1,6 @@
 package com.gzq.wanandroid.features.home.home
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,35 +16,25 @@ import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.composable
-import com.gzq.wanandroid.BuildConfig
+import com.google.accompanist.navigation.animation.composable
 import com.gzq.wanandroid.core.page.PageState
 import com.gzq.wanandroid.core.preview.ThemePreviews
-import com.gzq.wanandroid.core.quality.LogCompositions
-import com.gzq.wanandroid.core.quality.recomposeHighlighter
 import com.gzq.wanandroid.exit_app.MyBackHandler
-import com.gzq.wanandroid.features.main.LocalLoginState
 import com.gzq.wanandroid.features.home.home.components.HomeListItemC
-import com.gzq.wanandroid.features.main.LocalSnackbarHostState
 import com.gzq.wanandroid.router.Router
 import com.gzq.wanandroid.widget.PageHolder
 import com.gzq.wanandroid.widget.RefreshLoadMoreLazyColum
 import com.gzq.wanandroid.widget.RefreshLoadMoreState
-import kotlinx.coroutines.launch
-import timber.log.Timber
 
 
+@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.homeMainPage(
     navController: NavHostController,
     showBottomNavigationBar: (Boolean) -> Unit

@@ -1,5 +1,6 @@
 package com.gzq.wanandroid.features.home.project.pages
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -21,7 +22,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.composable
+import com.google.accompanist.navigation.animation.composable
 import com.gzq.wanandroid.core.preview.DevicePreviews
 import com.gzq.wanandroid.core.preview.ThemePreviews
 import com.gzq.wanandroid.router.Router
@@ -30,6 +31,7 @@ import com.gzq.wanandroid.widget.GlideImage
 import com.gzq.wanandroid.widget.MyTopAppBar
 
 
+@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.glideImagePage(navController: NavHostController) {
     composable(Router.GlideImagePage.route) {
         GlideImagePage() {
