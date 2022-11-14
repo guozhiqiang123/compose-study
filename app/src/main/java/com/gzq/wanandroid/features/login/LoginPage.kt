@@ -153,11 +153,11 @@ fun LoginPage(
                         .padding(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Spacer(modifier = Modifier.height(80.dp))
+                    Spacer(modifier = Modifier.weight(0.3f))
 
                     NameAndPassword(nameTextField, pwdTextField)
 
-                    Spacer(modifier = Modifier.height(80.dp))
+                    Spacer(modifier = Modifier.weight(0.3f))
 
                     Button(
                         onClick = {
@@ -175,7 +175,7 @@ fun LoginPage(
                     TextButton(onClick = launchRegisterPage) {
                         Text(text = stringResource(id = R.string.sign_up))
                     }
-                    Spacer(modifier = Modifier.weight(1.0f))
+                    Spacer(modifier = Modifier.weight(0.4f))
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         RadioButton(
                             selected = selectProtocol,

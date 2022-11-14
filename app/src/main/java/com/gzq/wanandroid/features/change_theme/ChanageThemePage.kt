@@ -65,7 +65,9 @@ fun ChangeThemePage(clickBack: () -> Unit) {
                 DynamicThemeC()
             } else {
                 StaticThemeC()
-                DynamicThemeC()
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    DynamicThemeC()
+                }
             }
         }
     }

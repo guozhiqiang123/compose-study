@@ -1,7 +1,5 @@
 package com.gzq.wanandroid
 
-import android.content.Context
-import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent

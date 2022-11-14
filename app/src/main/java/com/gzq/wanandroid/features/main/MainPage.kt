@@ -182,7 +182,7 @@ fun MainPage(
                     showBottomNavigationBar = {
                         showNavigationBar = it
                     },
-                    Modifier.padding(paddingValues)
+                    modifier = Modifier.padding(paddingValues)
                 )
             }
         }

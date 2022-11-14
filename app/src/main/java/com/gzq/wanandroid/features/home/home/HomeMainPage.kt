@@ -75,7 +75,7 @@ fun HomeMainPage(
 
     PageHolder(
         pageState,
-        modifier.recomposeHighlighter()
+        modifier
     ) { data ->
         val isDark = isSystemInDarkTheme()
         Column {
