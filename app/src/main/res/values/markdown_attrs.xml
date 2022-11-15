@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MarkdownStyle">
+        <!--文字颜色 默认#262626-->
+        <attr name="markdownTextColor" format="reference|color" />
+        <attr name="markdownTabCellTextColor" format="reference|color" />
+    </declare-styleable>
+</resources>

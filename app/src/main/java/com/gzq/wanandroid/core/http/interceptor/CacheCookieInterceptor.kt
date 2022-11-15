@@ -15,7 +15,6 @@ class CacheCookieInterceptor : Interceptor {
         val request = chain.request()
         val response = chain.proceed(request)
         val requestUrl = request.url.toString()
-        val domain = request.url.host
         if (aboutUser(requestUrl)) {
             val cookies = response.headers(SET_COOKIE_KEY)
             if (cookies.isNotEmpty()) {

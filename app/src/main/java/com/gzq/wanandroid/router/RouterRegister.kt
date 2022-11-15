@@ -1,6 +1,5 @@
 package com.gzq.wanandroid.router
 
-import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -24,6 +23,7 @@ import com.gzq.wanandroid.features.home.project.pages.glideImagePage
 import com.gzq.wanandroid.features.home.project.pages.sketchImagePage
 import com.gzq.wanandroid.features.home.project.projectMainPage
 import com.gzq.wanandroid.features.login.loginPage
+import com.gzq.wanandroid.features.open_source_libs.openSourceLibsPage
 import com.gzq.wanandroid.features.register.registerPage
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -87,6 +87,8 @@ fun RouterRegister(
         changeThemePage(navController)
 
         changeLanguagePage(navController)
+
+        openSourceLibsPage(navController,showBottomNavigationBar)
     }
 }
 

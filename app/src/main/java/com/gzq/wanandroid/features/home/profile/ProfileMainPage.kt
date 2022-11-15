@@ -104,6 +104,9 @@ fun NavGraphBuilder.profileMainPage(
                 navController.navigate(Router.ChangeLanguagePage.route)
             }, launchChangeThemePage = {
                 navController.navigate(Router.ChangeThemePage.route)
+            }, launchOpenSourcePage = {
+                showBottomNavigationBar(false)
+                navController.navigate(Router.OpenSourceLibsPage.route)
             })
     }
 }
@@ -115,7 +118,8 @@ fun ProfileMainPage(
     launchLoginPage: () -> Unit,
     loginController: (Boolean, Boolean) -> Unit,
     launchChangeLanguagePage: () -> Unit,
-    launchChangeThemePage: () -> Unit
+    launchChangeThemePage: () -> Unit,
+    launchOpenSourcePage: () -> Unit
 ) {
     MyBackHandler()
 
@@ -182,7 +186,8 @@ fun ProfileMainPage(
             }
         },
             launchChangeLanguagePage = launchChangeLanguagePage,
-            launchChangeThemePage = launchChangeThemePage
+            launchChangeThemePage = launchChangeThemePage,
+            launchOpenSourcePage = launchOpenSourcePage
         )
 
         //头像
@@ -281,7 +286,8 @@ fun MenuList(
     exitLogin: () -> Unit,
     checkUpdate: () -> Unit,
     launchChangeLanguagePage: () -> Unit,
-    launchChangeThemePage: () -> Unit
+    launchChangeThemePage: () -> Unit,
+    launchOpenSourcePage: () -> Unit
 ) {
     Column {
         Spacer(
@@ -304,7 +310,7 @@ fun MenuList(
                 elevation = 8.dp
             ) {
                 Column(Modifier.fillMaxWidth()) {
-                    MenuNormal()
+                    MenuNormal(launchOpenSourcePage = launchOpenSourcePage)
                     Spacer(modifier = Modifier.height(8.dp))
                     MenuSetup(launchChangeLanguagePage, launchChangeThemePage)
                     Spacer(modifier = Modifier.height(8.dp))
@@ -318,7 +324,7 @@ fun MenuList(
 }
 
 @Composable
-fun MenuNormal() {
+fun MenuNormal(launchOpenSourcePage: () -> Unit) {
     Column(
         modifier = Modifier
             .padding(top = 8.dp)
@@ -339,10 +345,9 @@ fun MenuNormal() {
             }
             ProfileMenuItemC(
                 iconRes = R.drawable.icon_004,
-                title = R.string.open_source_libraries
-            ) {
-
-            }
+                title = R.string.open_source_libraries,
+                onClick = launchOpenSourcePage
+            )
         }
     }
 }
@@ -398,20 +403,6 @@ fun MenuAccount(exitLogin: () -> Unit, checkUpdate: () -> Unit) {
                 onClick = checkUpdate
             )
         }
-    }
-}
-
-@Preview
-@Composable
-fun PreviewProfileMainPage() {
-    AndroidTemplateTheme {
-        ProfileMainPage(launchLoginPage = { /*TODO*/ }, loginController = { login, show ->
-
-        },
-            launchChangeLanguagePage = {
-
-            }, launchChangeThemePage = {
-            })
     }
 }
 

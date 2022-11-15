@@ -2,4 +2,6 @@
 <resources>
     <color name="primaryColor">#ba68c8</color>
     <color name="bgSplashColor">#e6b17e</color>
+    <color name="markdownTextColor">#262626</color>
+    <color name="markdownTabCellTextColor">#262626</color>
 </resources>

@@ -5,15 +5,21 @@ plugins {
     id 'kotlin-parcelize'
 }
 
+
+configurations {
+    cleanedAnnotations
+    api.exclude group: 'org.jetbrains', module: 'annotations'
+}
+
 android {
     namespace 'com.gzq.wanandroid'
-    compileSdk 33
+    compileSdk config['compile_sdk']
 
     defaultConfig {
         applicationId "com.gzq.wanandroid"
-        minSdk 22
-        targetSdk 33
-        versionCode 1
+        minSdk config['min_sdk']
+        targetSdk config['target_sdk']
+        versionCode config['version_code']
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -124,4 +130,19 @@ dependencies {
 
     //导航动画
     implementation "com.google.accompanist:accompanist-navigation-animation:0.27.0"
+
+    //markdown
+    //https://github.com/noties/Markwon
+    implementation "io.noties.markwon:core:$markwon"
+    implementation "io.noties.markwon:ext-strikethrough:$markwon"
+    implementation "io.noties.markwon:ext-tables:$markwon"
+    implementation "io.noties.markwon:ext-tasklist:$markwon"
+    implementation "io.noties.markwon:image-glide:$markwon"
+    implementation "io.noties.markwon:recycler:$markwon"
+    implementation "io.noties.markwon:recycler-table:$markwon"
+    implementation "io.noties.markwon:html:$markwon"
+    implementation "io.noties.markwon:syntax-highlight:$markwon"
+    implementation "io.noties:prism4j:$prism4j"
+    kapt "io.noties:prism4j-bundler:$prism4j"
+    implementation "androidx.cardview:cardview:1.0.0"
 }

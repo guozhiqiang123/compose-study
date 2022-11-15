@@ -48,4 +48,5 @@
     <string name="sketch_load_image">Sketch Load Image</string>
     <string name="free_style_projects">Free Style Projects</string>
     <string name="dynamic_theme">Material3 Dynamic Color</string>
+    <string name="use_open_source_libs">Open Source Software</string>
 </resources>
