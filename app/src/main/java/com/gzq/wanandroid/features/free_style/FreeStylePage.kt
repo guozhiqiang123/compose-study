@@ -46,6 +46,7 @@ import com.gzq.wanandroid.core.quality.LogCompositions
 import com.gzq.wanandroid.core.quality.recomposeHighlighter
 import com.gzq.wanandroid.router.Router
 import com.gzq.wanandroid.ui.theme.AndroidTemplateTheme
+import com.gzq.wanandroid.widget.LoadingDialog
 import com.gzq.wanandroid.widget.MyTopAppBar
 import timber.log.Timber
 
@@ -92,6 +93,8 @@ fun FreeStylePage(
                 EffectDemo { viewModel.testFunc() }
                 Spacer(modifier = Modifier.height(20.dp))
                 AnimateFloatDemo()
+                Spacer(modifier = Modifier.height(20.dp))
+                LoadingDialogDemo()
             }
         }
     }
@@ -208,5 +211,19 @@ fun AnimateFloatDemo() {
     )
     Button(onClick = { enabled = !enabled }) {
         Text(text = "改变透明度")
+    }
+}
+
+@Composable
+fun LoadingDialogDemo() {
+    var showDialog by rememberSaveable { mutableStateOf(false) }
+
+    if (showDialog) {
+        LoadingDialog {
+            showDialog = false
+        }
+    }
+    Button(onClick = { showDialog = true }) {
+        Text(text = "显示LoadingDialog")
     }
 }

@@ -35,6 +35,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -61,6 +62,7 @@ import com.gzq.wanandroid.features.main.LocalSnackbarHostState
 import com.gzq.wanandroid.router.Router
 import com.gzq.wanandroid.router.isHomePage
 import com.gzq.wanandroid.widget.CustomSnackBar
+import com.gzq.wanandroid.widget.LoadingDialog
 import com.gzq.wanandroid.widget.MyTopAppBar
 import com.gzq.wanandroid.widget.SnackBarState
 
@@ -119,16 +121,25 @@ fun LoginPage(
 
     val lifecycleOwner = LocalLifecycleOwner.current
 
+    val showLoading by viewModel.loadingState.observeAsState(false)
 
-    DisposableRepeatEffect(viewModel.showInfo, lifecycleOwner, reset = true) {
+    if (showLoading) {
+        LoadingDialog { viewModel.updateLoadingState(false) }
+    }
+
+    DisposableRepeatEffect(viewModel.loginState, lifecycleOwner, reset = true) {
         if (it == null) return@DisposableRepeatEffect
-        //登录成功的状态应该单独一个变量监听，这里偷个懒
-        if (it.type == LoginSnackInfo.Success) {
-            //登录成功跳转
-            loginController(true, true)
-            clickBack()
+        when (it) {
+            is LoginState.Success -> {
+                //登录成功跳转
+                loginController(true, true)
+                clickBack()
+            }
+
+            is LoginState.Error -> {
+                snackbarState.showSnackbar(message = it.info)
+            }
         }
-        snackbarState.showSnackbar(message = it.msg)
     }
 
     CompositionLocalProvider(LocalSnackbarHostState provides snackbarState) {
@@ -144,7 +155,7 @@ fun LoginPage(
                 SnackbarHost(hostState = snackbarState) {
                     CustomSnackBar(
                         data = it,
-                        state = parseSnackBarState(viewModel.showInfo.value)
+                        state = parseSnackBarState(viewModel.loginState.value)
                     )
                 }
             }
@@ -323,15 +334,15 @@ fun PolicyText(
     })
 }
 
-private fun parseSnackBarState(showInfo: LoginSnackInfo?): SnackBarState {
-    if (showInfo == null) return SnackBarState.NorMal
+private fun parseSnackBarState(showInfo: LoginState?): SnackBarState {
+    if (showInfo == null || showInfo !is LoginState.Error) return SnackBarState.NorMal
     return when (showInfo.type) {
-        LoginSnackInfo.NotSelectProtocol -> SnackBarState.Info
-        LoginSnackInfo.PasswordEmpty -> SnackBarState.Error
-        LoginSnackInfo.UserNameEmpty -> SnackBarState.Error
-        LoginSnackInfo.WrongNameOrPassword -> SnackBarState.Error
-        LoginSnackInfo.OtherError -> SnackBarState.Error
-        LoginSnackInfo.Success -> SnackBarState.Done
+        LoginState.Error.NotSelectProtocol -> SnackBarState.Info
+        LoginState.Error.PasswordEmpty -> SnackBarState.Error
+        LoginState.Error.UserNameEmpty -> SnackBarState.Error
+        LoginState.Error.WrongNameOrPassword -> SnackBarState.Error
+        LoginState.Error.OtherError -> SnackBarState.Error
+        LoginState.Error.NoNetWork -> SnackBarState.Info
         else -> SnackBarState.NorMal
     }
 }

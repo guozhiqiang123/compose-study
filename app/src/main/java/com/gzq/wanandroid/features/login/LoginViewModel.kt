@@ -1,6 +1,5 @@
 package com.gzq.wanandroid.features.login
 
-import androidx.compose.runtime.Stable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -9,80 +8,100 @@ import com.gzq.wanandroid.core.base.BaseViewModel
 import com.gzq.wanandroid.core.exception.Failure
 import com.gzq.wanandroid.repository.MyRepository
 import com.tencent.mmkv.MMKV
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-@Stable
-data class LoginSnackInfo(val type: Int, val msg: String) {
-    companion object {
-        const val NotSelectProtocol = 1
-        const val UserNameEmpty = 2
-        const val PasswordEmpty = 3
-        const val WrongNameOrPassword = 4
-        const val OtherError = 5
-        const val Success = 6
+sealed class LoginState {
+    data class Error(val type: Int, val info: String) : LoginState() {
+        companion object {
+            const val NotSelectProtocol = 1
+            const val UserNameEmpty = 2
+            const val PasswordEmpty = 3
+            const val WrongNameOrPassword = 4
+            const val NoNetWork = 5
+            const val OtherError = 6
+        }
     }
+
+    object Success : LoginState()
 }
 
 class LoginViewModel : BaseViewModel() {
 
 
-    private val _showInfo = MutableLiveData<LoginSnackInfo?>()
-    val showInfo: LiveData<LoginSnackInfo?> = _showInfo
+    private val _loginState = MutableLiveData<LoginState?>()
+    val loginState: LiveData<LoginState?> = _loginState
+
+    //之所以没有把loading状态归类到login状态中，是因为livedata会遗漏数据
+    private val _loadingState = MutableLiveData(false)
+    val loadingState: LiveData<Boolean> = _loadingState
 
     fun tryLogin(selectProtocol: Boolean, name: String, pwd: String) {
         if (!selectProtocol) {
-            _showInfo.value = LoginSnackInfo(type = LoginSnackInfo.NotSelectProtocol, "请勾选协议")
+            _loginState.value =
+                LoginState.Error(LoginState.Error.NotSelectProtocol, "请勾选协议")
             return
         }
 
         if (name.isEmpty()) {
-            _showInfo.value = LoginSnackInfo(type = LoginSnackInfo.UserNameEmpty, "用户名为空")
+            _loginState.value =
+                LoginState.Error(LoginState.Error.UserNameEmpty, "用户名为空")
             return
         }
 
         if (pwd.isEmpty()) {
-            _showInfo.value = LoginSnackInfo(type = LoginSnackInfo.PasswordEmpty, "密码为空")
+            _loginState.value =
+                LoginState.Error(LoginState.Error.PasswordEmpty, "密码为空")
             return
+        }
+
+        _loadingState.value = true
+
+        viewModelScope.launch {
+            delay(10000)
+            _loadingState.value = false
         }
 
         viewModelScope.launch {
             MyRepository.loginWithPassword(name, pwd).onSuccess {
                 Timber.d("登录信息：$it")
-                _showInfo.value = LoginSnackInfo(type = LoginSnackInfo.Success, "登录成功")
-                MMKV.defaultMMKV().encode(LocalKey.KEY_IS_LOGIN,true)
-                MMKV.defaultMMKV().encode(LocalKey.KEY_USER_INFO,it)
+                _loginState.value = LoginState.Success
+
+                MMKV.defaultMMKV().encode(LocalKey.KEY_IS_LOGIN, true)
+                MMKV.defaultMMKV().encode(LocalKey.KEY_USER_INFO, it)
             }.onFailure {
+                _loadingState.value = false
                 when (it) {
                     is Failure.ServerError -> {
-                        _showInfo.value =
-                            LoginSnackInfo(
-                                type = LoginSnackInfo.WrongNameOrPassword,
-                                msg = it.msg ?: "未知错误"
+                        _loginState.value =
+                            LoginState.Error(
+                                LoginState.Error.WrongNameOrPassword,
+                                it.msg ?: "未知错误"
                             )
                     }
 
                     is Failure.OtherError -> {
-                        _showInfo.value =
-                            LoginSnackInfo(
-                                type = LoginSnackInfo.WrongNameOrPassword,
-                                msg = it.message ?: "未知错误"
+                        _loginState.value =
+                            LoginState.Error(
+                                LoginState.Error.WrongNameOrPassword,
+                                it.message ?: "未知错误"
                             )
                     }
 
                     is Failure.NetworkError -> {
-                        _showInfo.value =
-                            LoginSnackInfo(
-                                type = LoginSnackInfo.WrongNameOrPassword,
-                                msg = "没有网络"
+                        _loginState.value =
+                            LoginState.Error(
+                                LoginState.Error.NoNetWork,
+                                "没有网络"
                             )
                     }
 
                     is Failure.EmptyData -> {
-                        _showInfo.value =
-                            LoginSnackInfo(
-                                type = LoginSnackInfo.WrongNameOrPassword,
-                                msg = "空数据"
+                        _loginState.value =
+                            LoginState.Error(
+                                LoginState.Error.OtherError,
+                                "空数据"
                             )
                     }
 
@@ -92,5 +111,9 @@ class LoginViewModel : BaseViewModel() {
                 }
             }
         }
+    }
+
+    fun updateLoadingState(show: Boolean) {
+        _loadingState.value = show
     }
 }
