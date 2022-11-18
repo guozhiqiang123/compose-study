@@ -125,6 +125,16 @@ fun NavGraphBuilder.profileMainPage(
                         ).toJson()
                     )
                 )
+            }, launchTodo = {
+                showBottomNavigationBar(false)
+                navController.navigate(
+                    Router.MarkdownPreviewPage.createRoute(
+                        MarkdownPreviewPageArgs(
+                            "markdown/ToDo.md",
+                            R.string.todo
+                        ).toJson()
+                    )
+                )
             })
     }
 }
@@ -138,7 +148,8 @@ fun ProfileMainPage(
     launchChangeLanguagePage: () -> Unit,
     launchChangeThemePage: () -> Unit,
     launchOpenSourcePage: () -> Unit,
-    launchProjectDoc: () -> Unit
+    launchProjectDoc: () -> Unit,
+    launchTodo: () -> Unit,
 ) {
     MyBackHandler()
 
@@ -195,12 +206,15 @@ fun ProfileMainPage(
         Notification()
 
         //菜单
-        MenuList(scroll,
+        MenuList(
+            scroll,
             onDeveloping = {
                 showOnDevelopDialog = true
-            }, exitLogin = {
+            },
+            exitLogin = {
                 showLogoutDialog = true
-            }, checkUpdate = {
+            },
+            checkUpdate = {
                 if (!loginState) {
                     showLoginWarningDialog = true
                 } else {
@@ -210,7 +224,8 @@ fun ProfileMainPage(
             launchChangeLanguagePage = launchChangeLanguagePage,
             launchChangeThemePage = launchChangeThemePage,
             launchOpenSourcePage = launchOpenSourcePage,
-            launchProjectDoc = launchProjectDoc
+            launchProjectDoc = launchProjectDoc,
+            launchTodo = launchTodo,
         )
 
         //头像
@@ -312,7 +327,8 @@ fun MenuList(
     launchChangeLanguagePage: () -> Unit,
     launchChangeThemePage: () -> Unit,
     launchOpenSourcePage: () -> Unit,
-    launchProjectDoc: () -> Unit
+    launchProjectDoc: () -> Unit,
+    launchTodo: () -> Unit,
 ) {
     Column {
         Spacer(
@@ -336,14 +352,14 @@ fun MenuList(
             ) {
                 Column(Modifier.fillMaxWidth()) {
                     MenuNormal(
-                        onDeveloping = onDeveloping,
                         launchOpenSourcePage = launchOpenSourcePage,
-                        launchProjectDoc = launchProjectDoc
+                        launchProjectDoc = launchProjectDoc,
+                        launchTodo = launchTodo
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     MenuSetup(launchChangeLanguagePage, launchChangeThemePage)
                     Spacer(modifier = Modifier.height(8.dp))
-                    MenuAccount(exitLogin, checkUpdate)
+                    MenuAccount(onDeveloping, exitLogin, checkUpdate)
                     //为了演示滑动效果，故意增高
                     Spacer(modifier = Modifier.height(200.dp))
                 }
@@ -354,9 +370,9 @@ fun MenuList(
 
 @Composable
 fun MenuNormal(
-    onDeveloping: () -> Unit,
     launchOpenSourcePage: () -> Unit,
-    launchProjectDoc: () -> Unit
+    launchProjectDoc: () -> Unit,
+    launchTodo: () -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -371,16 +387,6 @@ fun MenuNormal(
         Spacer(modifier = Modifier.height(12.dp))
         Card {
             ProfileMenuItemC(
-                iconRes = R.drawable.icon_001,
-                title = R.string.privacy_policy,
-                onClick = onDeveloping
-            )
-            ProfileMenuItemC(
-                iconRes = R.drawable.icon_002,
-                title = R.string.user_service,
-                onClick = onDeveloping
-            )
-            ProfileMenuItemC(
                 iconRes = R.drawable.icon_004,
                 title = R.string.open_source_libraries,
                 onClick = launchOpenSourcePage
@@ -389,6 +395,11 @@ fun MenuNormal(
                 iconRes = R.drawable.icon_005,
                 title = R.string.this_project_docs,
                 onClick = launchProjectDoc
+            )
+            ProfileMenuItemC(
+                iconRes = R.drawable.icon_006,
+                title = R.string.todo,
+                onClick = launchTodo
             )
         }
     }
@@ -419,7 +430,7 @@ fun MenuSetup(launchChangeLanguagePage: () -> Unit, launchChangeThemePage: () ->
 }
 
 @Composable
-fun MenuAccount(exitLogin: () -> Unit, checkUpdate: () -> Unit) {
+fun MenuAccount(onDeveloping: () -> Unit, exitLogin: () -> Unit, checkUpdate: () -> Unit) {
     Column(
         modifier = Modifier
             .padding(top = 8.dp)
@@ -432,6 +443,16 @@ fun MenuAccount(exitLogin: () -> Unit, checkUpdate: () -> Unit) {
         )
         Spacer(modifier = Modifier.height(12.dp))
         Card {
+            ProfileMenuItemC(
+                iconRes = R.drawable.icon_001,
+                title = R.string.privacy_policy,
+                onClick = onDeveloping
+            )
+            ProfileMenuItemC(
+                iconRes = R.drawable.icon_002,
+                title = R.string.user_service,
+                onClick = onDeveloping
+            )
             if (LocalLoginState.current) {
                 ProfileMenuItemC(
                     iconRes = R.drawable.icon_001,

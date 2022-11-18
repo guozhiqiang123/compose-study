@@ -117,10 +117,10 @@ fun CustomWebView(
         clickBack(agentWeb?.back() == false)
     }
     AndroidView(factory = {
-        LinearLayout(it)
-    }, modifier = modifier, update = {
-        agentWeb = AgentWeb.with((it.context) as Activity)
-            .setAgentWebParent(it, LinearLayout.LayoutParams(-1, -1))
+        Timber.tag(TAG_WEBVIEW).d("初始化容器")
+        val container = LinearLayout(it)
+        agentWeb = AgentWeb.with((it) as Activity)
+            .setAgentWebParent(container, LinearLayout.LayoutParams(-1, -1))
             .useDefaultIndicator(indicatorColor)
             .setSecurityType(AgentWeb.SecurityType.STRICT_CHECK)
             .setWebChromeClient(CustomWebChromeClient(onEvent))
@@ -137,27 +137,38 @@ fun CustomWebView(
                 else WebSettingsCompat.FORCE_DARK_OFF
             )
         }
-    })
+        container
+    }, modifier = modifier)
 
     val lifecycleOwner = LocalLifecycleOwner.current
     DisposableEffect(Unit) {
         val observer = object : DefaultLifecycleObserver {
 
             override fun onPause(owner: LifecycleOwner) {
+                Timber.tag(TAG_WEBVIEW).d("生命周期：onPause")
                 agentWeb?.webLifeCycle!!.onPause()
             }
 
             override fun onResume(owner: LifecycleOwner) {
+                Timber.tag(TAG_WEBVIEW).d("生命周期：onResume")
                 agentWeb?.webLifeCycle!!.onResume()
             }
 
-            override fun onDestroy(owner: LifecycleOwner) {
-                agentWeb?.webLifeCycle!!.onDestroy()
-            }
+            //注释的代码是反例
+            //因为使用的LocalLifecycleOwner.current实际是MainActivity的，
+            // 所以退出Compose当前页，并不会执行onDestroy
+//            override fun onDestroy(owner: LifecycleOwner) {
+//                Timber.tag(TAG_WEBVIEW).d("生命周期：onDestroy")
+//                agentWeb?.webLifeCycle!!.onDestroy()
+//            }
         }
+        Timber.tag(TAG_WEBVIEW).d("开始监听")
         lifecycleOwner.lifecycle.addObserver(observer)
         onDispose {
+            Timber.tag(TAG_WEBVIEW).d("结束监听")
             lifecycleOwner.lifecycle.removeObserver(observer)
+            //在退出Compose页面的时候释放webview
+            agentWeb?.webLifeCycle!!.onDestroy()
         }
     }
 

@@ -53,4 +53,5 @@
     <string name="use_open_source_libs">Open Source Software</string>
     <string name="register">Register</string>
     <string name="twice_password_same">The password should be the same twice</string>
+    <string name="todo">ToDo</string>
 </resources>

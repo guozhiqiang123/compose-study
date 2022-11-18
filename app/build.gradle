@@ -71,6 +71,8 @@ dependencies {
     debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
     releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
 
+//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
+
 
     implementation "androidx.core:core-ktx:$core_ktx"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$androidx_lifecycle"
