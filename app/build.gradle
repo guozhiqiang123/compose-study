@@ -148,4 +148,7 @@ dependencies {
     implementation "io.noties:prism4j:$prism4j"
     kapt "io.noties:prism4j-bundler:$prism4j"
     implementation "androidx.cardview:cardview:1.0.0"
+
+    //bugly
+    implementation 'com.tencent.bugly:crashreport:4.1.9'
 }

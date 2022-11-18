@@ -12,6 +12,7 @@
 	<string name="privacy_policy">隐私政策</string>
 	<string name="user_service">用户协议</string>
 	<string name="open_source_libraries">开源项目</string>
+	<string name="this_project_docs">项目文档</string>
 	<string name="change_language">切换语言</string>
 	<string name="change_theme">切换主题</string>
 	<string name="sign_out">退出登录</string>

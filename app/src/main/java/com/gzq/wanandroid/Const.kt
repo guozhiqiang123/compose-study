@@ -7,3 +7,7 @@ object LocalKey {
     const val KEY_USER_THEME = "user_theme"
     const val KEY_DYNAMIC_COLOR = "dynamic_color"
 }
+
+object Const {
+    const val Bugly_App_Id = "f273b972f1"
+}

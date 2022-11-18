@@ -12,6 +12,7 @@
     <string name="privacy_policy">Privacy Policy</string>
     <string name="user_service">User Service</string>
     <string name="open_source_libraries">Open Source Libraries</string>
+    <string name="this_project_docs">This Project Document</string>
     <string name="change_language">Language</string>
     <string name="change_theme">Theme</string>
     <string name="sign_out">Sign Out</string>

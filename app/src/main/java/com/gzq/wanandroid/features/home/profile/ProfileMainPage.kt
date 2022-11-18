@@ -45,9 +45,10 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -60,8 +61,8 @@ import com.gzq.wanandroid.features.home.profile.components.ProfileAvatarC
 import com.gzq.wanandroid.features.home.profile.components.ProfileMenuItemC
 import com.gzq.wanandroid.features.home.profile.components.ProfileUserNameC
 import com.gzq.wanandroid.features.main.LocalLoginState
+import com.gzq.wanandroid.features.open_source_libs.MarkdownPreviewPageArgs
 import com.gzq.wanandroid.router.Router
-import com.gzq.wanandroid.ui.theme.AndroidTemplateTheme
 import com.gzq.wanandroid.widget.OnDevelopingDialogC
 import kotlinx.coroutines.launch
 
@@ -106,7 +107,24 @@ fun NavGraphBuilder.profileMainPage(
                 navController.navigate(Router.ChangeThemePage.route)
             }, launchOpenSourcePage = {
                 showBottomNavigationBar(false)
-                navController.navigate(Router.OpenSourceLibsPage.route)
+                navController.navigate(
+                    Router.MarkdownPreviewPage.createRoute(
+                        MarkdownPreviewPageArgs(
+                            "markdown/OpenSourceLibs.md",
+                            R.string.use_open_source_libs
+                        ).toJson()
+                    )
+                )
+            }, launchProjectDoc = {
+                showBottomNavigationBar(false)
+                navController.navigate(
+                    Router.MarkdownPreviewPage.createRoute(
+                        MarkdownPreviewPageArgs(
+                            "markdown/ProjectDoc.md",
+                            R.string.this_project_docs
+                        ).toJson()
+                    )
+                )
             })
     }
 }
@@ -119,7 +137,8 @@ fun ProfileMainPage(
     loginController: (Boolean, Boolean) -> Unit,
     launchChangeLanguagePage: () -> Unit,
     launchChangeThemePage: () -> Unit,
-    launchOpenSourcePage: () -> Unit
+    launchOpenSourcePage: () -> Unit,
+    launchProjectDoc: () -> Unit
 ) {
     MyBackHandler()
 
@@ -176,18 +195,22 @@ fun ProfileMainPage(
         Notification()
 
         //菜单
-        MenuList(scroll, exitLogin = {
-            showLogoutDialog = true
-        }, checkUpdate = {
-            if (!loginState) {
-                showLoginWarningDialog = true
-            } else {
-                //TODO:检查更新
-            }
-        },
+        MenuList(scroll,
+            onDeveloping = {
+                showOnDevelopDialog = true
+            }, exitLogin = {
+                showLogoutDialog = true
+            }, checkUpdate = {
+                if (!loginState) {
+                    showLoginWarningDialog = true
+                } else {
+                    //TODO:检查更新
+                }
+            },
             launchChangeLanguagePage = launchChangeLanguagePage,
             launchChangeThemePage = launchChangeThemePage,
-            launchOpenSourcePage = launchOpenSourcePage
+            launchOpenSourcePage = launchOpenSourcePage,
+            launchProjectDoc = launchProjectDoc
         )
 
         //头像
@@ -283,11 +306,13 @@ fun RowScope.BaseUserInfoItem(@StringRes labelId: Int, value: String) {
 @Composable
 fun MenuList(
     scroll: ScrollState,
+    onDeveloping: () -> Unit,
     exitLogin: () -> Unit,
     checkUpdate: () -> Unit,
     launchChangeLanguagePage: () -> Unit,
     launchChangeThemePage: () -> Unit,
-    launchOpenSourcePage: () -> Unit
+    launchOpenSourcePage: () -> Unit,
+    launchProjectDoc: () -> Unit
 ) {
     Column {
         Spacer(
@@ -310,7 +335,11 @@ fun MenuList(
                 elevation = 8.dp
             ) {
                 Column(Modifier.fillMaxWidth()) {
-                    MenuNormal(launchOpenSourcePage = launchOpenSourcePage)
+                    MenuNormal(
+                        onDeveloping = onDeveloping,
+                        launchOpenSourcePage = launchOpenSourcePage,
+                        launchProjectDoc = launchProjectDoc
+                    )
                     Spacer(modifier = Modifier.height(8.dp))
                     MenuSetup(launchChangeLanguagePage, launchChangeThemePage)
                     Spacer(modifier = Modifier.height(8.dp))
@@ -324,7 +353,11 @@ fun MenuList(
 }
 
 @Composable
-fun MenuNormal(launchOpenSourcePage: () -> Unit) {
+fun MenuNormal(
+    onDeveloping: () -> Unit,
+    launchOpenSourcePage: () -> Unit,
+    launchProjectDoc: () -> Unit
+) {
     Column(
         modifier = Modifier
             .padding(top = 8.dp)
@@ -337,16 +370,25 @@ fun MenuNormal(launchOpenSourcePage: () -> Unit) {
         )
         Spacer(modifier = Modifier.height(12.dp))
         Card {
-            ProfileMenuItemC(iconRes = R.drawable.icon_001, title = R.string.privacy_policy) {
-
-            }
-            ProfileMenuItemC(iconRes = R.drawable.icon_002, title = R.string.user_service) {
-
-            }
+            ProfileMenuItemC(
+                iconRes = R.drawable.icon_001,
+                title = R.string.privacy_policy,
+                onClick = onDeveloping
+            )
+            ProfileMenuItemC(
+                iconRes = R.drawable.icon_002,
+                title = R.string.user_service,
+                onClick = onDeveloping
+            )
             ProfileMenuItemC(
                 iconRes = R.drawable.icon_004,
                 title = R.string.open_source_libraries,
                 onClick = launchOpenSourcePage
+            )
+            ProfileMenuItemC(
+                iconRes = R.drawable.icon_005,
+                title = R.string.this_project_docs,
+                onClick = launchProjectDoc
             )
         }
     }

@@ -8,6 +8,7 @@ import com.github.panpf.sketch.SketchFactory
 import com.github.panpf.sketch.decode.SvgBitmapDecoder
 import com.gzq.wanandroid.core.log.CrashReportingTree
 import com.gzq.wanandroid.net.NetHelper
+import com.tencent.bugly.crashreport.CrashReport
 import com.tencent.mmkv.MMKV
 import com.yariksoffice.lingver.Lingver
 import com.yariksoffice.lingver.store.PreferenceLocaleStore
@@ -26,6 +27,9 @@ class App : Application(), SketchFactory {
         Timber.plant(if (BuildConfig.DEBUG) Timber.DebugTree() else CrashReportingTree())
 
         MMKV.initialize(this)
+
+        CrashReport.setIsDevelopmentDevice(this, BuildConfig.DEBUG)
+        CrashReport.initCrashReport(this, Const.Bugly_App_Id, BuildConfig.DEBUG)
 
         //初始网络工具类
         NetHelper.init(this)

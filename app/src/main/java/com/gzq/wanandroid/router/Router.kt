@@ -1,5 +1,7 @@
 package com.gzq.wanandroid.router
 
+import com.gzq.wanandroid.features.open_source_libs.MarkdownPreviewPageArgs
+
 /**
  * 如果需要传参，请参照DetailPage，单独提供方法，统一传参，方便维护
  */
@@ -27,5 +29,9 @@ sealed class Router(val route: String) {
     object FreeStylePage : Router("free/style")
     object ChangeThemePage : Router("change/theme")
     object ChangeLanguagePage : Router("change/language")
-    object OpenSourceLibsPage : Router("open/source/libs")
+    object MarkdownPreviewPage : Router("markdown?{args}") {
+        //本打算在DeepLink中传递Parcelable对象，但是官方目前不支持
+        //这是原文：https://issuetracker.google.com/issues/148523779
+        fun createRoute(args: String): String = "markdown?$args"
+    }
 }
