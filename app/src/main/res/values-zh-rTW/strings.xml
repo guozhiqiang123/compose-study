@@ -26,6 +26,7 @@
     <string name="cannot_contain_special_characters">不能包含特殊字符</string>
     <string name="display_hide_password">显示/隐藏密码</string>
     <string name="please_input_password">请输入密码</string>
+    <string name="please_input_password_again">请再次输入密码</string>
     <string name="password_at_least_length">密码长度不少于6个字符</string>
     <string name="follow_system">跟随系统</string>
     <string name="language_english">英语</string>
@@ -49,4 +50,7 @@
     <string name="sketch_load_image">Sketch加载图片</string>
     <string name="free_style_projects">自由测试项目</string>
     <string name="dynamic_theme">动态主题</string>
+    <string name="use_open_source_libs">使用的开源项目</string>
+    <string name="register">注册</string>
+    <string name="twice_password_same">两次密码应该一致</string>
 </resources>

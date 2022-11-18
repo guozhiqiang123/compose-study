@@ -70,7 +70,7 @@ fun ChangeThemePage(clickBack: () -> Unit) {
     }
 
     Scaffold(topBar = {
-        MyTopAppBar(titleStr = stringResource(id = R.string.change_language), clickBack = clickBack)
+        MyTopAppBar(title = stringResource(id = R.string.change_language), clickBack = clickBack)
     }) { paddingValues ->
         Column(
             modifier = Modifier

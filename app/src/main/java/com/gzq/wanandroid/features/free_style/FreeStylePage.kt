@@ -68,7 +68,7 @@ fun FreeStylePage(
 ) {
     AndroidTemplateTheme {
         Scaffold(topBar = {
-            MyTopAppBar(titleStr = "自由项目", clickBack = clickBack)
+            MyTopAppBar(title = "自由项目", clickBack = clickBack)
         }) { paddingValues ->
             Column(
                 Modifier

@@ -1,7 +1,6 @@
 package com.gzq.wanandroid.features.change_theme
 
 import android.os.Build
-import android.text.style.DynamicDrawableSpan
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.clickable
@@ -55,7 +54,7 @@ fun NavGraphBuilder.changeThemePage(
 fun ChangeThemePage(clickBack: () -> Unit) {
 
     Scaffold(topBar = {
-        MyTopAppBar(titleStr = stringResource(id = R.string.change_theme), clickBack = clickBack)
+        MyTopAppBar(title = stringResource(id = R.string.change_theme), clickBack = clickBack)
     }) { paddingValues ->
 
         Column(

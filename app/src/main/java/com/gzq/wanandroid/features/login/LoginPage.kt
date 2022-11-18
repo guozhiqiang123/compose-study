@@ -323,7 +323,7 @@ fun PolicyText(
     })
 }
 
-fun parseSnackBarState(showInfo: LoginSnackInfo?): SnackBarState {
+private fun parseSnackBarState(showInfo: LoginSnackInfo?): SnackBarState {
     if (showInfo == null) return SnackBarState.NorMal
     return when (showInfo.type) {
         LoginSnackInfo.NotSelectProtocol -> SnackBarState.Info

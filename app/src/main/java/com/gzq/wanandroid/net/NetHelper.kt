@@ -2,7 +2,7 @@ package com.gzq.wanandroid.net
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.gzq.wanandroid.WanAndroidApi
+import com.gzq.wanandroid.repository.WanAndroidApi
 import com.gzq.wanandroid.core.http.NetworkHandler
 import com.gzq.wanandroid.core.http.interceptor.CacheCookieInterceptor
 import com.gzq.wanandroid.core.http.interceptor.SetCookieInterceptor

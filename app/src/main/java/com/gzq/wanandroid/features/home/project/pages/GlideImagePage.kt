@@ -50,7 +50,7 @@ val imageUrl =
 fun GlideImagePage(clickBack: (() -> Unit)? = null) {
     AndroidTemplateTheme {
         Scaffold(topBar = {
-            MyTopAppBar(titleStr = "实验Glide加载图片功能", clickBack = clickBack ?: {})
+            MyTopAppBar(title = "实验Glide加载图片功能", clickBack = clickBack ?: {})
         }) { paddingValue ->
             val density = LocalDensity.current
 

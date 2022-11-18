@@ -1,6 +1,5 @@
 package com.gzq.wanandroid.features.home.project.pages
 
-import android.media.Image
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -46,7 +45,7 @@ fun NavGraphBuilder.coilImagePage(navController: NavHostController) {
 fun CoilImagePage(clickBack: (() -> Unit)? = null) {
     AndroidTemplateTheme {
         Scaffold(topBar = {
-            MyTopAppBar(titleStr = "实验Coil加载图片功能", clickBack = clickBack ?: {})
+            MyTopAppBar(title = "实验Coil加载图片功能", clickBack = clickBack ?: {})
         }) { paddingValue ->
             Column(Modifier.padding(paddingValue)) {
 

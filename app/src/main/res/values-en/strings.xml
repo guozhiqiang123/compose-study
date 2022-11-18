@@ -26,6 +26,7 @@
     <string name="cannot_contain_special_characters">Cannot Contain Special Characters</string>
     <string name="display_hide_password">Display/Hide Password</string>
     <string name="please_input_password">Please Input Password</string>
+    <string name="please_input_password_again">Please Input Password Again</string>
     <string name="password_at_least_length">At Least Six Characters for Password</string>
     <string name="follow_system">Follow System</string>
     <string name="language_english">English</string>
@@ -50,4 +51,6 @@
     <string name="free_style_projects">Free Style Projects</string>
     <string name="dynamic_theme">Material3 Dynamic Color</string>
     <string name="use_open_source_libs">Open Source Software</string>
+    <string name="register">Register</string>
+    <string name="twice_password_same">The password should be the same twice</string>
 </resources>

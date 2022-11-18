@@ -5,28 +5,6 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.LocationOn
-import androidx.compose.material.icons.filled.Send
-import androidx.compose.material.icons.filled.ThumbUp
-import androidx.compose.material.icons.filled.Warning
-import androidx.compose.material.icons.outlined.ExitToApp
-import androidx.compose.material.icons.outlined.Face
-import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material.icons.outlined.List
-import androidx.compose.material.icons.outlined.Lock
-import androidx.compose.material.icons.outlined.MailOutline
-import androidx.compose.material.icons.outlined.Menu
-import androidx.compose.material.icons.outlined.MoreVert
-import androidx.compose.material.icons.outlined.Notifications
-import androidx.compose.material.icons.outlined.PlayArrow
-import androidx.compose.material.icons.outlined.Share
-import androidx.compose.material.icons.outlined.ShoppingCart
-import androidx.compose.material.icons.outlined.Star
-import androidx.compose.material.icons.outlined.ThumbUp
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -47,7 +25,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun MyTopAppBar(
     modifier: Modifier = Modifier,
-    titleStr: String = "",
+    title: String = "",
     backIcon: ImageVector = Icons.Default.ArrowBack,
     elevation: Dp = 4.dp,
     actions: @Composable RowScope.() -> Unit = {},
@@ -59,7 +37,7 @@ fun MyTopAppBar(
             modifier = modifier,
             title = {
                 Text(
-                    text = titleStr,
+                    text = title,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     maxLines = 1,
@@ -87,7 +65,7 @@ fun MyTopAppBar(
 @Preview
 @Composable
 fun MyTopAppBarPreview() {
-    MyTopAppBar(titleStr = "标题") {
+    MyTopAppBar(title = "标题") {
 
     }
 }

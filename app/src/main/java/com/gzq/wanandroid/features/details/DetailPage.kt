@@ -76,7 +76,7 @@ fun DetailPage(url: String, clickBack: () -> Unit) {
         Scaffold(topBar = {
             MyTopAppBar(
                 backIcon = Icons.Default.Close,
-                titleStr = title,
+                title = title,
                 clickBack = clickBack,
                 actions = {
                     IconButton(onClick = { openArticleInBrowser(url, ctx) }) {

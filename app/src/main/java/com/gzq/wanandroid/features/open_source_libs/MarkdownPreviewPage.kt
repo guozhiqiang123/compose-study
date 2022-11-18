@@ -21,13 +21,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavArgs
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
-import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.composable
-import com.gzq.wanandroid.R
 import com.gzq.wanandroid.core.gson.GsonUtils
 import com.gzq.wanandroid.core.page.PageState
 import com.gzq.wanandroid.router.Router
@@ -73,7 +69,7 @@ fun MarkdownPreviewPage(
 
     Scaffold(topBar = {
         MyTopAppBar(
-            titleStr = stringResource(id = args.pageNameId),
+            title = stringResource(id = args.pageNameId),
             clickBack = clickBack
         )
     }) { paddingValues ->

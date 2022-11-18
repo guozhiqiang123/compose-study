@@ -24,6 +24,14 @@ object MyRepository {
         return handleException { NetHelper.service.logout() }
     }
 
+    suspend fun register(
+        username: String,
+        password: String,
+        rePassword: String
+    ): Result<UserInfo?> {
+        return handleException { NetHelper.service.register(username, password, rePassword) }
+    }
+
     /**
      * 异常处理，减少模板代码
      */

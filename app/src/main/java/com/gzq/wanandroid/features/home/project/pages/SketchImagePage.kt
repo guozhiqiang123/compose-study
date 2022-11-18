@@ -50,7 +50,7 @@ fun SketchImagePage(clickBack: (() -> Unit)? = null) {
         Scaffold(topBar = {
             MyTopAppBar(
                 clickBack = clickBack ?: {},
-                titleStr = "实验Sketch加载图片"
+                title = "实验Sketch加载图片"
             )
         }) { paddingValues ->
             Column(

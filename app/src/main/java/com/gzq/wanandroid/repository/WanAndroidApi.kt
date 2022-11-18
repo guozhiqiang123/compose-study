@@ -1,4 +1,4 @@
-package com.gzq.wanandroid
+package com.gzq.wanandroid.repository
 
 import com.gzq.wanandroid.model.HomeList
 import com.gzq.wanandroid.core.http.HttpResult
@@ -31,4 +31,15 @@ interface WanAndroidApi {
      */
     @GET("/user/logout/json")
     suspend fun logout(): HttpResult<Nothing?>
+
+    /**
+     * 注册
+     */
+    @FormUrlEncoded
+    @POST("/user/register")
+    suspend fun register(
+        @Field("username") userName: String,
+        @Field("password") password: String,
+        @Field("repassword") repassword: String,
+    ): HttpResult<UserInfo?>
 }

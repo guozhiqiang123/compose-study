@@ -80,7 +80,7 @@ fun RouterRegister(
 
         loginPage(navController, loginController, showBottomNavigationBar)
 
-        registerPage(navController)
+        registerPage(navController, loginController,showBottomNavigationBar)
 
         freeStylePage(navController)
 
@@ -88,7 +88,7 @@ fun RouterRegister(
 
         changeLanguagePage(navController)
 
-        openSourceLibsPage(navController,showBottomNavigationBar)
+        openSourceLibsPage(navController, showBottomNavigationBar)
     }
 }
 
