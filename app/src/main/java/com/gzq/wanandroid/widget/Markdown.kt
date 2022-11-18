@@ -52,7 +52,7 @@ fun Markdown(
     modifier: Modifier = Modifier,
     isDark: Boolean = isSystemInDarkTheme(),
     @ColorInt linkColor: Int = MaterialTheme.colorScheme.primary.toArgb(),
-    @Px headingBreakHeight: Float = with(LocalDensity.current) { 2.dp.toPx() },
+    @Px headingBreakHeight: Int = with(LocalDensity.current) { 2.dp.toPx() }.roundToInt(),
     @ColorInt blockQuoteColor: Int = MaterialTheme.colorScheme.outline.toArgb(),
     @ColorInt codeContainerColor: Int =
         if (isDark) MaterialTheme.colorScheme.secondaryContainer.toArgb()
@@ -61,10 +61,12 @@ fun Markdown(
         if (isDark) MaterialTheme.colorScheme.onSecondaryContainer.toArgb()
         else MaterialTheme.colorScheme.secondaryContainer.toArgb(),
     @ColorInt tabBorderColor: Int = Color(0xFF262626).copy(alpha = 0.5f).toArgb(),
-    @ColorInt tabHeadRowBackgroundColor: Int = MaterialTheme.colorScheme.secondary.toArgb(),
-    @ColorInt tabEvenRowBackgroundColor: Int = Color.Transparent.toArgb(),
+    @ColorInt tabHeadRowBackgroundColor: Int = MaterialTheme.colorScheme.secondaryContainer.toArgb(),
+    @ColorInt tabEvenRowBackgroundColor: Int = MaterialTheme.colorScheme.secondaryContainer
+        .copy(alpha = 0.1f).toArgb(),
     @ColorInt tabOddRowBackgroundColor: Int = MaterialTheme.colorScheme.secondaryContainer.toArgb(),
-    @Px tabBorderWidth: Float = with(LocalDensity.current) { 1.dp.toPx() },
+    @Px tabBorderWidth: Int = with(LocalDensity.current) { 1.dp.toPx() }.roundToInt(),
+    @Px tabCellPadding: Int = with(LocalDensity.current) { 8.dp.toPx() }.roundToInt(),
     @ColorInt taskListCheckedFillColor: Int = MaterialTheme.colorScheme.primary.toArgb(),
     @ColorInt taskListNormalOutlineColor: Int = MaterialTheme.colorScheme.primary.toArgb(),
     @ColorInt taskListCheckMarkColor: Int = MaterialTheme.colorScheme.onPrimary.toArgb(),
@@ -75,8 +77,8 @@ fun Markdown(
     val tabTheme = remember {
         TableTheme.Builder()
             .tableBorderColor(tabBorderColor)
-            .tableBorderWidth(tabBorderWidth.roundToInt())
-            .tableCellPadding(0)
+            .tableBorderWidth(tabBorderWidth)
+            .tableCellPadding(tabCellPadding)
             .tableHeaderRowBackgroundColor(tabHeadRowBackgroundColor)
             .tableEvenRowBackgroundColor(tabEvenRowBackgroundColor)
             .tableOddRowBackgroundColor(tabOddRowBackgroundColor)
@@ -107,7 +109,7 @@ fun Markdown(
                     builder.codeTextColor(codeColor)
                         .linkColor(linkColor)
                         .blockQuoteColor(blockQuoteColor)
-                        .headingBreakHeight(headingBreakHeight.roundToInt())
+                        .headingBreakHeight(headingBreakHeight)
 
                 }
 

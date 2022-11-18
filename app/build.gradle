@@ -110,14 +110,17 @@ dependencies {
     }
 
     //coil
+    //https://github.com/coil-kt/coil
     implementation "io.coil-kt:coil-compose:2.2.2"
 
     //sketch
+    //https://github.com/panpf/sketch
     implementation "io.github.panpf.sketch3:sketch:3.1.0"
     implementation "io.github.panpf.sketch3:sketch-compose:3.1.0"
     implementation "io.github.panpf.sketch3:sketch-svg:3.1.0"
 
     //本地存储
+    //https://github.com/Tencent/MMKV
     implementation 'com.tencent:mmkv:1.2.14'
 
     //AgentWeb
