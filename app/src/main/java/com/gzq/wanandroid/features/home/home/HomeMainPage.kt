@@ -28,6 +28,7 @@ import com.gzq.wanandroid.core.page.PageState
 import com.gzq.wanandroid.core.preview.ThemePreviews
 import com.gzq.wanandroid.exit_app.MyBackHandler
 import com.gzq.wanandroid.features.home.home.components.HomeListItemC
+import com.gzq.wanandroid.model.Article
 import com.gzq.wanandroid.router.Router
 import com.gzq.wanandroid.widget.PageHolder
 import com.gzq.wanandroid.widget.RefreshLoadMoreLazyColum
@@ -40,9 +41,9 @@ fun NavGraphBuilder.homeMainPage(
     showBottomNavigationBar: (Boolean) -> Unit
 ) {
     composable(Router.HomePage.route) {
-        HomeMainPage { url ->
+        HomeMainPage { data ->
             showBottomNavigationBar(false)
-            navController.navigate(Router.DetailPage.createRoute(url))
+            navController.navigate(Router.DetailPage.createRoute(data.toJson()))
         }
     }
 }
@@ -52,7 +53,7 @@ fun NavGraphBuilder.homeMainPage(
 fun HomeMainPage(
     modifier: Modifier = Modifier,
     viewModel: HomeMainViewModel = viewModel(),
-    launchToDetailPage: ((String) -> Unit)? = null
+    launchToDetailPage: ((Article) -> Unit)? = null
 ) {
     val pageState by viewModel.pageState.observeAsState(PageState.Loading)
 
@@ -155,7 +156,7 @@ fun HomeMainPage(
                             .fillMaxWidth(),
                         data = item
                     ) {
-                        launchToDetailPage?.invoke(item.link)
+                        launchToDetailPage?.invoke(item)
                     }
 //                    }
                 }

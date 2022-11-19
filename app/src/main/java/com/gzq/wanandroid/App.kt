@@ -7,7 +7,8 @@ import com.github.panpf.sketch.Sketch
 import com.github.panpf.sketch.SketchFactory
 import com.github.panpf.sketch.decode.SvgBitmapDecoder
 import com.gzq.wanandroid.core.log.CrashReportingTree
-import com.gzq.wanandroid.net.NetHelper
+import com.gzq.wanandroid.repository.local.RoomHelp
+import com.gzq.wanandroid.repository.remote.NetHelper
 import com.tencent.bugly.crashreport.CrashReport
 import com.tencent.mmkv.MMKV
 import com.yariksoffice.lingver.Lingver
@@ -33,6 +34,9 @@ class App : Application(), SketchFactory {
 
         //初始网络工具类
         NetHelper.init(this)
+
+        //初始化数据库
+        RoomHelp.init(this)
 
         //多语言
         val store = PreferenceLocaleStore(this)

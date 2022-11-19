@@ -1,9 +1,6 @@
-package com.gzq.wanandroid.features.details
+package com.gzq.wanandroid.features.webview
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -13,52 +10,38 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.composable
-import com.gzq.wanandroid.R
-import com.gzq.wanandroid.core.gson.GsonUtils
-import com.gzq.wanandroid.features.main.LocalLoginState
-import com.gzq.wanandroid.model.Article
-import com.gzq.wanandroid.repository.local.RoomHelp
 import com.gzq.wanandroid.router.Router
 import com.gzq.wanandroid.router.isHomePage
 import com.gzq.wanandroid.ui.theme.AndroidTemplateTheme
 import com.gzq.wanandroid.widget.CustomWebView
 import com.gzq.wanandroid.widget.MyTopAppBar
 import com.gzq.wanandroid.widget.WebViewEvent
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalAnimationApi::class)
-fun NavGraphBuilder.detailPage(
+fun NavGraphBuilder.webviewPage(
     navController: NavHostController,
     showBottomNavigationBar: (Boolean) -> Unit
 ) {
-    composable(Router.DetailPage.route) {
-        DetailPage(
-            data = GsonUtils.gson.fromJson(it.arguments?.getString("args"), Article::class.java)
+    composable(Router.WebViewPage.route) {
+        WebViewPage(
+            url = it.arguments?.getString("url")
+                ?: throw IllegalArgumentException("url不能为空")
         ) {
             showBottomNavigationBar(navController.previousBackStackEntry!!.isHomePage())
             navController.popBackStack()
@@ -66,29 +49,13 @@ fun NavGraphBuilder.detailPage(
     }
 }
 
+/**
+ * 通用webview，传递url即可显示
+ */
 @SuppressLint("SetJavaScriptEnabled")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailPage(data: Article?, clickBack: () -> Unit) {
-    if (data == null) return
-
-    //登录情况下
-    //进入详情页，并阅读10秒，就加入阅读历史
-    if (LocalLoginState.current) {
-        val scope = rememberCoroutineScope()
-        DisposableEffect(Unit) {
-            val job = scope.launch(Dispatchers.IO) {
-                delay(10000)
-                val mData = data.copy(updateTime = System.currentTimeMillis())
-                RoomHelp.db.articleDao().insertAll(mData)
-            }
-            onDispose {
-                job.cancel()
-            }
-        }
-    }
-
-    val ctx = LocalContext.current
+fun WebViewPage(url: String, clickBack: () -> Unit) {
 
     //将我们自己的返回点击代理给系统
     //否则点击物理返回按钮不会执行showBottomNavigation的逻辑
@@ -103,21 +70,8 @@ fun DetailPage(data: Article?, clickBack: () -> Unit) {
             MyTopAppBar(
                 backIcon = Icons.Default.Close,
                 title = title,
-                clickBack = clickBack,
-                actions = {
-                    IconButton(onClick = { openArticleInBrowser(data.link, ctx) }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.icon_browser),
-                            contentDescription = null
-                        )
-                    }
-                    IconButton(onClick = { shareArticle(title, data.link, ctx) }) {
-                        Icon(
-                            imageVector = Icons.Default.Share,
-                            contentDescription = null
-                        )
-                    }
-                })
+                clickBack = clickBack
+            )
         }, floatingActionButton = {
             FloatingActionButton(onClick = { favorite = !favorite }) {
                 Icon(
@@ -128,7 +82,7 @@ fun DetailPage(data: Article?, clickBack: () -> Unit) {
             }
         }, floatingActionButtonPosition = FabPosition.Center) { paddingValues ->
             CustomWebView(
-                url = data.link,
+                url = url,
                 isDarkTheme = isSystemInDarkTheme(),
                 modifier = Modifier
                     .fillMaxSize()
@@ -152,32 +106,5 @@ fun DetailPage(data: Article?, clickBack: () -> Unit) {
                 }
             }
         }
-    }
-}
-
-/**
- * 分享文章
- */
-fun shareArticle(title: String, url: String, context: Context) {
-    val intent = Intent(Intent.ACTION_SEND).apply {
-        type = "text/plain"
-        putExtra(Intent.EXTRA_TITLE, title)
-        putExtra(Intent.EXTRA_TEXT, url)
-    }
-    context.startActivity(
-        Intent.createChooser(
-            intent,
-            "分享文章给"
-        )
-    )
-}
-
-/**
- * 在浏览器中打开文章
- */
-fun openArticleInBrowser(url: String, context: Context) {
-    runCatching {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        context.startActivity(intent)
     }
 }

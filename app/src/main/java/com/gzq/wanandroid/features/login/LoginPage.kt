@@ -56,6 +56,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.composable
+import com.gzq.wanandroid.HttpUrl
 import com.gzq.wanandroid.R
 import com.gzq.wanandroid.core.extension.DisposableRepeatEffect
 import com.gzq.wanandroid.features.main.LocalSnackbarHostState
@@ -79,10 +80,10 @@ fun NavGraphBuilder.loginPage(
                 navController.navigate(Router.RegisterPage.route)
             }, launchPrivacyPage = { url ->
                 //因为详情页也是网页，所以直接跳了
-                navController.navigate(Router.DetailPage.createRoute(url))
+                navController.navigate(Router.WebViewPage.createRoute(url))
             }, launchUserPage = { url ->
                 //因为详情页也是网页，所以直接跳了
-                navController.navigate(Router.DetailPage.createRoute(url))
+                navController.navigate(Router.WebViewPage.createRoute(url))
             }) {
             if (navController.previousBackStackEntry == null) {
                 showBottomNavigationBar(true)
@@ -196,8 +197,8 @@ fun LoginPage(
                             selected = selectProtocol,
                             onClick = { selectProtocol = !selectProtocol })
                         PolicyText(
-                            privacyUrl = "https://devloper.android.com",
-                            userUrl = "https://www.baidu.com",
+                            privacyUrl = HttpUrl.Privacy_Policy,
+                            userUrl = HttpUrl.User_Policy,
                             clickPrivacy = launchPrivacyPage,
                             clickUser = launchUserPage
                         )

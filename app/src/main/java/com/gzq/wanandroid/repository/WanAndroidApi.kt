@@ -3,6 +3,7 @@ package com.gzq.wanandroid.repository
 import com.gzq.wanandroid.model.HomeList
 import com.gzq.wanandroid.core.http.HttpResult
 import com.gzq.wanandroid.model.UserInfo
+import com.gzq.wanandroid.model.UserShareList
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -42,4 +43,10 @@ interface WanAndroidApi {
         @Field("password") password: String,
         @Field("repassword") repassword: String,
     ): HttpResult<UserInfo?>
+
+    /**
+     * 自己的分享、积分等信息
+     */
+    @GET("/user/lg/private_articles/{page}/json")
+    suspend fun myShare(@Path("page") page: Int = 1): HttpResult<UserShareList?>
 }

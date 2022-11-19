@@ -31,7 +31,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -47,12 +47,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.composable
+import com.gzq.wanandroid.HttpUrl
 import com.gzq.wanandroid.R
 import com.gzq.wanandroid.exit_app.MyBackHandler
 import com.gzq.wanandroid.features.home.profile.components.LoginWarningDialogC
@@ -135,6 +134,9 @@ fun NavGraphBuilder.profileMainPage(
                         ).toJson()
                     )
                 )
+            }, launchWebPage = { url ->
+                showBottomNavigationBar(false)
+                navController.navigate(Router.WebViewPage.createRoute(url))
             })
     }
 }
@@ -150,6 +152,7 @@ fun ProfileMainPage(
     launchOpenSourcePage: () -> Unit,
     launchProjectDoc: () -> Unit,
     launchTodo: () -> Unit,
+    launchWebPage: (String) -> Unit,
 ) {
     MyBackHandler()
 
@@ -185,12 +188,15 @@ fun ProfileMainPage(
 
     val loginState = LocalLoginState.current
     if (loginState) {
-        LaunchedEffect(Unit) {
+        DisposableEffect(Unit) {
             viewModel.fetchUserInfo()
+            viewModel.fetchMyShare(true)
+            viewModel.fetchMyHistory()
+            onDispose { }
         }
     }
 
-
+    val menuListData by viewModel.menuListData.observeAsState(MenuListData())
 
     Box(modifier.fillMaxSize()) {
 
@@ -200,7 +206,14 @@ fun ProfileMainPage(
         GradientHeader()
 
         //用户积分等信息
-        BaseUserInfo()
+        BaseUserInfo(
+            if (userInfo == null) menuListData.copy(
+                collection = 0,
+                share = 0,
+                integral = 0,
+                history = 0
+            ) else menuListData
+        )
 
         //通知小铃铛
         Notification()
@@ -208,9 +221,7 @@ fun ProfileMainPage(
         //菜单
         MenuList(
             scroll,
-            onDeveloping = {
-                showOnDevelopDialog = true
-            },
+            launchWebPage = launchWebPage,
             exitLogin = {
                 showLogoutDialog = true
             },
@@ -279,7 +290,7 @@ fun GradientHeader() {
 }
 
 @Composable
-fun BaseUserInfo() {
+fun BaseUserInfo(data: MenuListData) {
 
     Card(
         modifier = Modifier.padding(
@@ -290,10 +301,10 @@ fun BaseUserInfo() {
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
     ) {
         Row(Modifier.height(80.dp)) {
-            BaseUserInfoItem(labelId = R.string.collection, value = "4")
-            BaseUserInfoItem(labelId = R.string.share, value = "1")
-            BaseUserInfoItem(labelId = R.string.rewards_points, value = "541")
-            BaseUserInfoItem(labelId = R.string.history, value = "41")
+            BaseUserInfoItem(labelId = R.string.collection, value = data.collection.toString())
+            BaseUserInfoItem(labelId = R.string.share, value = data.share.toString())
+            BaseUserInfoItem(labelId = R.string.rewards_points, value = data.integral.toString())
+            BaseUserInfoItem(labelId = R.string.history, value = data.history.toString())
         }
     }
 }
@@ -321,7 +332,7 @@ fun RowScope.BaseUserInfoItem(@StringRes labelId: Int, value: String) {
 @Composable
 fun MenuList(
     scroll: ScrollState,
-    onDeveloping: () -> Unit,
+    launchWebPage: (String) -> Unit,
     exitLogin: () -> Unit,
     checkUpdate: () -> Unit,
     launchChangeLanguagePage: () -> Unit,
@@ -359,7 +370,7 @@ fun MenuList(
                     Spacer(modifier = Modifier.height(8.dp))
                     MenuSetup(launchChangeLanguagePage, launchChangeThemePage)
                     Spacer(modifier = Modifier.height(8.dp))
-                    MenuAccount(onDeveloping, exitLogin, checkUpdate)
+                    MenuAccount(launchWebPage, exitLogin, checkUpdate)
                     //为了演示滑动效果，故意增高
                     Spacer(modifier = Modifier.height(200.dp))
                 }
@@ -430,7 +441,7 @@ fun MenuSetup(launchChangeLanguagePage: () -> Unit, launchChangeThemePage: () ->
 }
 
 @Composable
-fun MenuAccount(onDeveloping: () -> Unit, exitLogin: () -> Unit, checkUpdate: () -> Unit) {
+fun MenuAccount(launchWebPage: (String) -> Unit, exitLogin: () -> Unit, checkUpdate: () -> Unit) {
     Column(
         modifier = Modifier
             .padding(top = 8.dp)
@@ -446,12 +457,12 @@ fun MenuAccount(onDeveloping: () -> Unit, exitLogin: () -> Unit, checkUpdate: ()
             ProfileMenuItemC(
                 iconRes = R.drawable.icon_001,
                 title = R.string.privacy_policy,
-                onClick = onDeveloping
+                onClick = { launchWebPage(HttpUrl.Privacy_Policy) }
             )
             ProfileMenuItemC(
                 iconRes = R.drawable.icon_002,
                 title = R.string.user_service,
-                onClick = onDeveloping
+                onClick = { launchWebPage(HttpUrl.User_Policy) }
             )
             if (LocalLoginState.current) {
                 ProfileMenuItemC(
@@ -469,3 +480,9 @@ fun MenuAccount(onDeveloping: () -> Unit, exitLogin: () -> Unit, checkUpdate: ()
     }
 }
 
+data class MenuListData(
+    val collection: Int = 0,//收藏
+    val share: Int = 0,//分享
+    val integral: Int = 0,//积分
+    val history: Int = 0,//历史
+)

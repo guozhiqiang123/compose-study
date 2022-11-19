@@ -25,6 +25,7 @@ import com.gzq.wanandroid.features.home.project.projectMainPage
 import com.gzq.wanandroid.features.login.loginPage
 import com.gzq.wanandroid.features.open_source_libs.openSourceLibsPage
 import com.gzq.wanandroid.features.register.registerPage
+import com.gzq.wanandroid.features.webview.webviewPage
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -89,6 +90,8 @@ fun RouterRegister(
         changeLanguagePage(navController)
 
         openSourceLibsPage(navController, showBottomNavigationBar)
+
+        webviewPage(navController,showBottomNavigationBar)
     }
 }
 

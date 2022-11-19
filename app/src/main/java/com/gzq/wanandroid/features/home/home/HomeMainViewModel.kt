@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.gzq.wanandroid.core.base.BaseViewModel
 import com.gzq.wanandroid.core.exception.Failure
 import com.gzq.wanandroid.core.page.PageState
-import com.gzq.wanandroid.model.HomeListItem
+import com.gzq.wanandroid.model.Article
 import com.gzq.wanandroid.repository.MyRepository
 import com.gzq.wanandroid.widget.RefreshLoadMoreState
 import kotlinx.coroutines.launch
@@ -19,13 +19,13 @@ class HomeMainViewModel : BaseViewModel() {
     val selectTabIndex: LiveData<Int> = _selectTabIndex
 
 
-    private val allData = MutableLiveData<List<HomeListItem>>(emptyList())
+    private val allData = MutableLiveData<List<Article>>(emptyList())
 
     private val _homeTab = MutableLiveData<List<String>>(emptyList())
     val homeTab: LiveData<List<String>> = _homeTab
 
-    private val _pageState = MutableLiveData<PageState<List<HomeListItem>>>(PageState.Loading)
-    val pageState: LiveData<PageState<List<HomeListItem>>> = _pageState
+    private val _pageState = MutableLiveData<PageState<List<Article>>>(PageState.Loading)
+    val pageState: LiveData<PageState<List<Article>>> = _pageState
 
     private val _listState = MutableLiveData(RefreshLoadMoreState.Idle)
     val listState: LiveData<RefreshLoadMoreState> = _listState
@@ -105,7 +105,7 @@ class HomeMainViewModel : BaseViewModel() {
         _selectTabIndex.value = index
     }
 
-    fun afterRemoveUpdateListData(newData: List<HomeListItem>) {
+    fun afterRemoveUpdateListData(newData: List<Article>) {
         _pageState.value = PageState.Success(newData)
     }
 }

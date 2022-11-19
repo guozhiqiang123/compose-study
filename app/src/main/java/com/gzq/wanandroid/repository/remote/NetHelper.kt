@@ -1,4 +1,4 @@
-package com.gzq.wanandroid.net
+package com.gzq.wanandroid.repository.remote
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor

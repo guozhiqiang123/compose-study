@@ -5,8 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -14,20 +12,19 @@ import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.gson.Gson
 import com.gzq.wanandroid.core.preview.ThemePreviews
-import com.gzq.wanandroid.model.HomeListItem
+import com.gzq.wanandroid.model.Article
 import com.gzq.wanandroid.ui.theme.AndroidTemplateTheme
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeListItemC(modifier: Modifier = Modifier, data: HomeListItem, click: () -> Unit) {
+fun HomeListItemC(modifier: Modifier = Modifier, data: Article, click: () -> Unit) {
     OutlinedCard(
         onClick = click,
         modifier,
@@ -106,7 +103,7 @@ fun PreviewHomeListItemC() {
                 )
                 .clickable {
 
-                }, data = Gson().fromJson(json, HomeListItem::class.java)
+                }, data = Gson().fromJson(json, Article::class.java)
         ) {
 
         }
