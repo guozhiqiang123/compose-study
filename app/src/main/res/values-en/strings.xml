@@ -54,4 +54,5 @@
     <string name="register">Register</string>
     <string name="twice_password_same">The password should be the same twice</string>
     <string name="todo">ToDo</string>
+    <string name="my_collection">My Collection</string>
 </resources>

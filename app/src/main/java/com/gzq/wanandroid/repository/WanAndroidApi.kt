@@ -2,6 +2,8 @@ package com.gzq.wanandroid.repository
 
 import com.gzq.wanandroid.model.HomeList
 import com.gzq.wanandroid.core.http.HttpResult
+import com.gzq.wanandroid.model.Article
+import com.gzq.wanandroid.model.CollectionArticles
 import com.gzq.wanandroid.model.UserInfo
 import com.gzq.wanandroid.model.UserShareList
 import retrofit2.http.Field
@@ -48,5 +50,11 @@ interface WanAndroidApi {
      * 自己的分享、积分等信息
      */
     @GET("/user/lg/private_articles/{page}/json")
-    suspend fun myShare(@Path("page") page: Int = 1): HttpResult<UserShareList?>
+    suspend fun myShare(@Path("page") page: Int): HttpResult<UserShareList?>
+
+    /**
+     * 我的收藏
+     */
+    @GET("lg/collect/list/{page}/json")
+    suspend fun myCollection(@Path("page") page: Int): HttpResult<CollectionArticles?>
 }

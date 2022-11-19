@@ -27,7 +27,7 @@ class HomeMainViewModel : BaseViewModel() {
     private val _pageState = MutableLiveData<PageState<List<Article>>>(PageState.Loading)
     val pageState: LiveData<PageState<List<Article>>> = _pageState
 
-    private val _listState = MutableLiveData(RefreshLoadMoreState.Idle)
+    private val _listState = MutableLiveData<RefreshLoadMoreState>(RefreshLoadMoreState.Idle)
     val listState: LiveData<RefreshLoadMoreState> = _listState
 
     init {
@@ -78,7 +78,7 @@ class HomeMainViewModel : BaseViewModel() {
                 }
                 .onFailure {
                     _error.value = it
-                    _listState.value = RefreshLoadMoreState.LoadError
+                    _listState.value = RefreshLoadMoreState.LoadMoreError(it)
                 }
         }
     }
@@ -95,7 +95,8 @@ class HomeMainViewModel : BaseViewModel() {
         val newData = allData.value!!.filter { it.superChapterName == tabName }
 
         if (oldSize == newData.size) {
-            _listState.value = RefreshLoadMoreState.CurrNoMore
+            _listState.value =
+                RefreshLoadMoreState.LoadMoreError(error = Throwable("当前分页无更多，点击加载下一页"))
         }
 
         _pageState.value = PageState.Success(newData)

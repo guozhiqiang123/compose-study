@@ -8,6 +8,7 @@ import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 import com.gzq.wanandroid.core.exception.Failure
 import com.gzq.wanandroid.model.Article
+import com.gzq.wanandroid.model.CollectionArticles
 import com.gzq.wanandroid.model.UserInfo
 import com.gzq.wanandroid.model.UserShareList
 import com.gzq.wanandroid.repository.local.RoomHelp
@@ -35,7 +36,7 @@ object MyRepository {
         return handleException { NetHelper.service.register(username, password, rePassword) }
     }
 
-    suspend fun fetchMyShare(page: Int): Result<UserShareList?> {
+    suspend fun fetchMyShare(page: Int = 1): Result<UserShareList?> {
         return handleException { NetHelper.service.myShare(page) }
     }
 
@@ -45,6 +46,10 @@ object MyRepository {
         } catch (e: Throwable) {
             Result.failure(Failure.OtherError(e))
         }
+    }
+
+    suspend fun fetchMyCollection(page: Int = 0): Result<CollectionArticles?> {
+        return handleException { NetHelper.service.myCollection(page) }
     }
 
     /**

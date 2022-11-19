@@ -14,6 +14,7 @@ import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.gzq.wanandroid.features.change_language.changeLanguagePage
 import com.gzq.wanandroid.features.change_theme.changeThemePage
+import com.gzq.wanandroid.features.collection.collectionPage
 import com.gzq.wanandroid.features.details.detailPage
 import com.gzq.wanandroid.features.free_style.freeStylePage
 import com.gzq.wanandroid.features.home.home.homeMainPage
@@ -92,6 +93,8 @@ fun RouterRegister(
         openSourceLibsPage(navController, showBottomNavigationBar)
 
         webviewPage(navController,showBottomNavigationBar)
+
+        collectionPage(navController,showBottomNavigationBar)
     }
 }
 

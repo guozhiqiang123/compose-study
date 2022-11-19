@@ -33,4 +33,6 @@ sealed class Router(val route: String) {
     object WebViewPage : Router("webview?{url}") {
         fun createRoute(url: String): String = "webview?$url"
     }
+
+    object CollectionPage : Router("collection")
 }

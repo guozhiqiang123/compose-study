@@ -54,4 +54,5 @@
     <string name="register">注册</string>
     <string name="twice_password_same">两次密码应该一致</string>
     <string name="todo">ToDo</string>
+    <string name="my_collection">我的收藏</string>
 </resources>

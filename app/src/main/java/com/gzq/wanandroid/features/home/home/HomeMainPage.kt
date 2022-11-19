@@ -124,28 +124,7 @@ fun HomeMainPage(
                  */
                 itemsIndexed(
                     items = data ?: emptyList(),
-//                    key = { _, item -> item.id }
                 ) { index, item ->
-
-//                    // 侧滑删除所需State
-//                    val dismissState = rememberDismissState()
-//                    if (dismissState.isDismissed(DismissDirection.StartToEnd)) {
-//                        viewModel.afterRemoveUpdateListData(
-//                            data!!.toMutableList().also { it.remove(item) })
-//                    }
-//                    SwipeToDismiss(
-//                        state = dismissState,
-//                        //animateItemPlacement() 此修饰符便添加了动画
-//                        Modifier.animateItemPlacement(),
-//                        // 允许滑动删除的方向
-//                        directions = setOf(DismissDirection.StartToEnd),
-//                        // "背景 "，即原来显示的内容被划走一部分时显示什么
-//                        background = {},
-//                        //下面这个参数为触发滑动删除的移动阈值
-//                        dismissThresholds = { direction ->
-//                            FractionalThreshold(if (direction == DismissDirection.StartToEnd) 0.25f else 0.5f)
-//                        },
-//                    ) {
                     HomeListItemC(
                         modifier = Modifier
                             .padding(
@@ -158,7 +137,6 @@ fun HomeMainPage(
                     ) {
                         launchToDetailPage?.invoke(item)
                     }
-//                    }
                 }
             }
         }

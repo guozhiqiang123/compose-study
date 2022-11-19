@@ -1,10 +1,12 @@
 package com.gzq.wanandroid.features.home.profile
 
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,8 +26,10 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -42,6 +46,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -53,6 +59,7 @@ import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.composable
 import com.gzq.wanandroid.HttpUrl
 import com.gzq.wanandroid.R
+import com.gzq.wanandroid.core.quality.LogCompositions
 import com.gzq.wanandroid.exit_app.MyBackHandler
 import com.gzq.wanandroid.features.home.profile.components.LoginWarningDialogC
 import com.gzq.wanandroid.features.home.profile.components.LogoutDialogC
@@ -137,6 +144,17 @@ fun NavGraphBuilder.profileMainPage(
             }, launchWebPage = { url ->
                 showBottomNavigationBar(false)
                 navController.navigate(Router.WebViewPage.createRoute(url))
+            }, launchCollectionPage = {
+                showBottomNavigationBar(false)
+                navController.navigate(Router.CollectionPage.route)
+            }, launchSharePage = {
+
+            }, launchIntegralPage = {
+
+            }, launchHistoryPage = {
+
+            }, launchMessagePage = {
+
             })
     }
 }
@@ -153,6 +171,11 @@ fun ProfileMainPage(
     launchProjectDoc: () -> Unit,
     launchTodo: () -> Unit,
     launchWebPage: (String) -> Unit,
+    launchCollectionPage: () -> Unit,
+    launchSharePage: () -> Unit,
+    launchIntegralPage: () -> Unit,
+    launchHistoryPage: () -> Unit,
+    launchMessagePage: () -> Unit,
 ) {
     MyBackHandler()
 
@@ -212,11 +235,15 @@ fun ProfileMainPage(
                 share = 0,
                 integral = 0,
                 history = 0
-            ) else menuListData
+            ) else menuListData,
+            launchCollectionPage = launchCollectionPage,
+            launchSharePage = launchSharePage,
+            launchIntegralPage = launchIntegralPage,
+            launchHistoryPage = launchHistoryPage
         )
 
         //通知小铃铛
-        Notification()
+        Notification(launchMessagePage = launchMessagePage)
 
         //菜单
         MenuList(
@@ -241,13 +268,14 @@ fun ProfileMainPage(
 
         //头像
         ProfileAvatarC(
-            modifier = Modifier.then(
-                if (!LocalLoginState.current)
-                    Modifier.clickable(onClick = launchLoginPage,
-                        indication = null,//禁止水波纹
-                        interactionSource = remember { MutableInteractionSource() })
-                else Modifier
-            )
+            modifier = Modifier
+                .then(
+                    if (!LocalLoginState.current)
+                        Modifier.clickable(onClick = launchLoginPage,
+                            indication = null,//禁止水波纹
+                            interactionSource = remember { MutableInteractionSource() })
+                    else Modifier
+                )
         ) { scroll.value }
 
         //用户名
@@ -259,13 +287,13 @@ fun ProfileMainPage(
 }
 
 @Composable
-fun BoxScope.Notification() {
+fun BoxScope.Notification(launchMessagePage: () -> Unit) {
     Box(
         modifier = Modifier
             .height(CollapsedAppBarHeight)
             .align(Alignment.TopEnd)
     ) {
-        IconButton(onClick = { }, modifier = Modifier.align(Alignment.CenterEnd)) {
+        IconButton(onClick = launchMessagePage, modifier = Modifier.align(Alignment.CenterEnd)) {
             Icon(imageVector = Icons.Default.Notifications, contentDescription = null)
         }
     }
@@ -290,7 +318,13 @@ fun GradientHeader() {
 }
 
 @Composable
-fun BaseUserInfo(data: MenuListData) {
+fun BaseUserInfo(
+    data: MenuListData,
+    launchCollectionPage: () -> Unit,
+    launchSharePage: () -> Unit,
+    launchIntegralPage: () -> Unit,
+    launchHistoryPage: () -> Unit
+) {
 
     Card(
         modifier = Modifier.padding(
@@ -301,21 +335,38 @@ fun BaseUserInfo(data: MenuListData) {
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
     ) {
         Row(Modifier.height(80.dp)) {
-            BaseUserInfoItem(labelId = R.string.collection, value = data.collection.toString())
-            BaseUserInfoItem(labelId = R.string.share, value = data.share.toString())
-            BaseUserInfoItem(labelId = R.string.rewards_points, value = data.integral.toString())
-            BaseUserInfoItem(labelId = R.string.history, value = data.history.toString())
+            BaseUserInfoItem(
+                labelId = R.string.collection,
+                value = data.collection.toString(),
+                onClick = launchCollectionPage
+            )
+            BaseUserInfoItem(
+                labelId = R.string.share,
+                value = data.share.toString(),
+                onClick = launchSharePage
+            )
+            BaseUserInfoItem(
+                labelId = R.string.rewards_points,
+                value = data.integral.toString(),
+                onClick = launchIntegralPage
+            )
+            BaseUserInfoItem(
+                labelId = R.string.history,
+                value = data.history.toString(),
+                onClick = launchHistoryPage
+            )
         }
     }
 }
 
 @Composable
-fun RowScope.BaseUserInfoItem(@StringRes labelId: Int, value: String) {
+fun RowScope.BaseUserInfoItem(@StringRes labelId: Int, value: String, onClick: () -> Unit) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = Modifier
             .padding(6.dp)
+            .clickable(onClick = onClick)
             .fillMaxHeight()
             .weight(1.0f)
     ) {
