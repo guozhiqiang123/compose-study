@@ -26,6 +26,7 @@ import com.gzq.wanandroid.features.home.project.projectMainPage
 import com.gzq.wanandroid.features.login.loginPage
 import com.gzq.wanandroid.features.open_source_libs.openSourceLibsPage
 import com.gzq.wanandroid.features.register.registerPage
+import com.gzq.wanandroid.features.test_click.testClickPage
 import com.gzq.wanandroid.features.webview.webviewPage
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -95,6 +96,8 @@ fun RouterRegister(
         webviewPage(navController,showBottomNavigationBar)
 
         collectionPage(navController,showBottomNavigationBar)
+
+        testClickPage(navController)
     }
 }
 

@@ -29,9 +29,11 @@ fun NavGraphBuilder.projectMainPage(
             navController.navigate(Router.CoilImagePage.route)
         }, routeSketchImagePage = {
             navController.navigate(Router.SketchImagePage.route)
-        }) {
+        }, routeFreeStylePage = {
             navController.navigate(Router.FreeStylePage.route)
-        }
+        }, routeTestClickPage = {
+            navController.navigate(Router.TestClickPage.route)
+        })
     }
 }
 
@@ -41,7 +43,8 @@ fun ProjectMainPage(
     routeGlideImagePage: () -> Unit,
     routeCoilImagePage: () -> Unit,
     routeSketchImagePage: () -> Unit,
-    routeFreeStylePage: () -> Unit
+    routeFreeStylePage: () -> Unit,
+    routeTestClickPage: () -> Unit,
 ) {
     MyBackHandler()
     LazyColumn(
@@ -51,7 +54,7 @@ fun ProjectMainPage(
     ) {
         item {
             Button(
-                onClick = routeGlideImagePage ?: {},
+                onClick = routeGlideImagePage,
                 Modifier.fillMaxWidth()
             ) {
                 Text(text = stringResource(id = R.string.glide_load_image))
@@ -59,7 +62,7 @@ fun ProjectMainPage(
         }
         item {
             Button(
-                onClick = routeCoilImagePage ?: {},
+                onClick = routeCoilImagePage,
                 Modifier.fillMaxWidth()
             ) {
                 Text(text = stringResource(id = R.string.coil_load_image))
@@ -67,7 +70,7 @@ fun ProjectMainPage(
         }
         item {
             Button(
-                onClick = routeSketchImagePage ?: {},
+                onClick = routeSketchImagePage,
                 Modifier.fillMaxWidth()
             ) {
                 Text(text = stringResource(id = R.string.sketch_load_image))
@@ -75,10 +78,18 @@ fun ProjectMainPage(
         }
         item {
             Button(
-                onClick = routeFreeStylePage ?: {},
+                onClick = routeFreeStylePage,
                 Modifier.fillMaxWidth()
             ) {
                 Text(text = stringResource(id = R.string.free_style_projects))
+            }
+        }
+        item {
+            Button(
+                onClick = routeTestClickPage,
+                Modifier.fillMaxWidth()
+            ) {
+                Text(text = "验证点击事件穿透")
             }
         }
     }

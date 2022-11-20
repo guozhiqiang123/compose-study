@@ -1,6 +1,8 @@
 package com.gzq.wanandroid.features.home.home
 
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ScrollableTabRow
 import androidx.compose.material.Surface
 import androidx.compose.material.Tab
@@ -19,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
@@ -30,6 +34,7 @@ import com.gzq.wanandroid.exit_app.MyBackHandler
 import com.gzq.wanandroid.features.home.home.components.HomeListItemC
 import com.gzq.wanandroid.model.Article
 import com.gzq.wanandroid.router.Router
+import com.gzq.wanandroid.ui.common.ArticleListItemC
 import com.gzq.wanandroid.widget.PageHolder
 import com.gzq.wanandroid.widget.RefreshLoadMoreLazyColum
 import com.gzq.wanandroid.widget.RefreshLoadMoreState
@@ -108,7 +113,7 @@ fun HomeMainPage(
             RefreshLoadMoreLazyColum(
                 modifier = Modifier.fillMaxSize(),
                 state = refreshLoadMoreState,
-                verticalArrangement = Arrangement.spacedBy(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
                 onRefreshCallBack = {
                     viewModel.fetchHomeList(isRefresh = true, tabName = tabs[selectTab])
                 },
@@ -119,24 +124,18 @@ fun HomeMainPage(
                     )
                 },
             ) {
-                /**
-                 * 支持从左到右滑动删除
-                 */
                 itemsIndexed(
                     items = data ?: emptyList(),
                 ) { index, item ->
-                    HomeListItemC(
-                        modifier = Modifier
-                            .padding(
-                                top = if (index == 0) 12.dp else 0.dp,
-                                start = 16.dp,
-                                end = 16.dp
-                            )
-                            .fillMaxWidth(),
-                        data = item
-                    ) {
-                        launchToDetailPage?.invoke(item)
-                    }
+                    ArticleListItemC(
+                        article = item,
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp)
+                            .clickable {
+                                launchToDetailPage?.invoke(item)
+                            }
+                    )
                 }
             }
         }

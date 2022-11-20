@@ -1,8 +1,5 @@
 package com.gzq.wanandroid.router
 
-import com.gzq.wanandroid.features.open_source_libs.MarkdownPreviewPageArgs
-import com.gzq.wanandroid.model.Article
-
 /**
  * 如果需要传参，请参照DetailPage，单独提供方法，统一传参，方便维护
  */
@@ -35,4 +32,5 @@ sealed class Router(val route: String) {
     }
 
     object CollectionPage : Router("collection")
+    object TestClickPage : Router("test/click")
 }

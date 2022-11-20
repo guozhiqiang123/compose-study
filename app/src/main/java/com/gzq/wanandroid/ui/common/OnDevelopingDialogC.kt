@@ -1,4 +1,4 @@
-package com.gzq.wanandroid.widget
+package com.gzq.wanandroid.ui.common
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme

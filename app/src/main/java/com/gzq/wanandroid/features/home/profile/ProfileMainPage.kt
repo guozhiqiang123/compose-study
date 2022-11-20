@@ -1,12 +1,10 @@
 package com.gzq.wanandroid.features.home.profile
 
-import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,10 +24,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -46,8 +42,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -59,7 +53,6 @@ import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.composable
 import com.gzq.wanandroid.HttpUrl
 import com.gzq.wanandroid.R
-import com.gzq.wanandroid.core.quality.LogCompositions
 import com.gzq.wanandroid.exit_app.MyBackHandler
 import com.gzq.wanandroid.features.home.profile.components.LoginWarningDialogC
 import com.gzq.wanandroid.features.home.profile.components.LogoutDialogC
@@ -69,7 +62,7 @@ import com.gzq.wanandroid.features.home.profile.components.ProfileUserNameC
 import com.gzq.wanandroid.features.main.LocalLoginState
 import com.gzq.wanandroid.features.open_source_libs.MarkdownPreviewPageArgs
 import com.gzq.wanandroid.router.Router
-import com.gzq.wanandroid.widget.OnDevelopingDialogC
+import com.gzq.wanandroid.ui.common.OnDevelopingDialogC
 import kotlinx.coroutines.launch
 
 
