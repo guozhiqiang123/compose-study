@@ -43,9 +43,7 @@ fun NavGraphBuilder.testClickPage(
     navController: NavHostController
 ) {
     composable(Router.TestClickPage.route) {
-        TestClickPage(){
-
-        }
+        ClickEventTest()
     }
 }
 
@@ -94,12 +92,16 @@ fun ClickEventTest() {
             Modifier
                 .fillMaxSize()
                 .offset { IntOffset(0, offset.roundToInt()) }
-                .draggable(rememberDraggableState(onDelta = { offset += it}), Orientation.Vertical)
+                .draggable(rememberDraggableState(onDelta = { offset += it }), Orientation.Vertical)
         ) {
-            repeat(20){ i->
-                key(i) {
-                    Text(text = "Item $i", modifier = Modifier.padding(20.dp))
-                }
+            repeat(20) { i ->
+                Box(
+                    modifier = Modifier
+                        .padding(top = 10.dp)
+                        .fillMaxWidth()
+                        .height(100.dp)
+                        .background(Color.Red)
+                )
             }
         }
     }

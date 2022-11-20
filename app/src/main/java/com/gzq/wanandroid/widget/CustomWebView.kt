@@ -169,6 +169,7 @@ fun CustomWebView(
             lifecycleOwner.lifecycle.removeObserver(observer)
             //在退出Compose页面的时候释放webview
             agentWeb?.webLifeCycle!!.onDestroy()
+            agentWeb = null
         }
     }
 
