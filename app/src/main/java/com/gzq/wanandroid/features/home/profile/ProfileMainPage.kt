@@ -1,7 +1,6 @@
 package com.gzq.wanandroid.features.home.profile
 
 import androidx.annotation.StringRes
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -48,9 +47,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavHostController
-import com.google.accompanist.navigation.animation.composable
 import com.gzq.wanandroid.HttpUrl
 import com.gzq.wanandroid.R
 import com.gzq.wanandroid.exit_app.MyBackHandler
@@ -60,8 +56,6 @@ import com.gzq.wanandroid.features.home.profile.components.ProfileAvatarC
 import com.gzq.wanandroid.features.home.profile.components.ProfileMenuItemC
 import com.gzq.wanandroid.features.home.profile.components.ProfileUserNameC
 import com.gzq.wanandroid.features.main.LocalLoginState
-import com.gzq.wanandroid.features.open_source_libs.MarkdownPreviewPageArgs
-import com.gzq.wanandroid.router.Router
 import com.gzq.wanandroid.ui.common.OnDevelopingDialogC
 import kotlinx.coroutines.launch
 
@@ -87,70 +81,6 @@ internal val CollapsedTextOffsetX =
     CollapsedImageOffsetX + CollapsedImageSize + 12.dp
 internal val ExpandedTextOffsetY = ExpandedImageOffsetY + ExpandedImageSize / 2 - 36.dp / 2
 internal val CollapsedTextOffsetY = CollapsedAppBarHeight / 2 - 20.dp / 2
-
-
-@OptIn(ExperimentalAnimationApi::class)
-fun NavGraphBuilder.profileMainPage(
-    navController: NavHostController,
-    loginController: (Boolean, Boolean) -> Unit,
-    showBottomNavigationBar: (Boolean) -> Unit
-) {
-    composable(Router.ProfilePage.route) {
-        ProfileMainPage(launchLoginPage = {
-            showBottomNavigationBar(false)
-            navController.navigate(Router.LoginPage.route)
-        }, loginController = loginController,
-            launchChangeLanguagePage = {
-                navController.navigate(Router.ChangeLanguagePage.route)
-            }, launchChangeThemePage = {
-                navController.navigate(Router.ChangeThemePage.route)
-            }, launchOpenSourcePage = {
-                showBottomNavigationBar(false)
-                navController.navigate(
-                    Router.MarkdownPreviewPage.createRoute(
-                        MarkdownPreviewPageArgs(
-                            "markdown/OpenSourceLibs.md",
-                            R.string.use_open_source_libs
-                        ).toJson()
-                    )
-                )
-            }, launchProjectDoc = {
-                showBottomNavigationBar(false)
-                navController.navigate(
-                    Router.MarkdownPreviewPage.createRoute(
-                        MarkdownPreviewPageArgs(
-                            "markdown/ProjectDoc.md",
-                            R.string.this_project_docs
-                        ).toJson()
-                    )
-                )
-            }, launchTodo = {
-                showBottomNavigationBar(false)
-                navController.navigate(
-                    Router.MarkdownPreviewPage.createRoute(
-                        MarkdownPreviewPageArgs(
-                            "markdown/ToDo.md",
-                            R.string.todo
-                        ).toJson()
-                    )
-                )
-            }, launchWebPage = { url ->
-                showBottomNavigationBar(false)
-                navController.navigate(Router.WebViewPage.createRoute(url))
-            }, launchCollectionPage = {
-                showBottomNavigationBar(false)
-                navController.navigate(Router.CollectionPage.route)
-            }, launchSharePage = {
-
-            }, launchIntegralPage = {
-
-            }, launchHistoryPage = {
-
-            }, launchMessagePage = {
-
-            })
-    }
-}
 
 @Composable
 fun ProfileMainPage(
