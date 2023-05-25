@@ -20,5 +20,5 @@ interface FavoriteArticleDao {
     suspend fun insert(articles: FavoriteArticle)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun update(articles: FavoriteArticle)
+    suspend fun update(vararg articles: FavoriteArticle)
 }

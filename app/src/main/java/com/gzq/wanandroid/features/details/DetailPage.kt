@@ -83,12 +83,14 @@ fun DetailPage(data: Article?, clickBack: () -> Unit) {
             val job = scope.launch(Dispatchers.IO) {
                 delay(10000)
                 val mData = data.copy(updateTime = System.currentTimeMillis())
-                val isNotExist =
-                    RoomHelp.db.articleDao().queryById(mData.id, mData.userId).isEmpty()
-                if (isNotExist) {
+                val thatOne =
+                    RoomHelp.db.articleDao().queryById(mData.id, mData.userId).firstOrNull()
+                if (thatOne == null) {
                     RoomHelp.db.articleDao().insert(mData)
                 } else {
-                    RoomHelp.db.articleDao().update(mData)
+                    //uid必须保持一致才能更新
+                    //后面再看看有没有好的方案，总觉得这么写很蠢
+                    RoomHelp.db.articleDao().update(mData.copy(uid = thatOne.uid))
                 }
             }
             onDispose {
@@ -100,17 +102,21 @@ fun DetailPage(data: Article?, clickBack: () -> Unit) {
         LaunchedEffect(Unit) {
             val result = RoomHelp.db.favoriteArticleDao().queryById(data.id, data.userId)
                 .firstOrNull()
-            favorite = result != null
+            favorite = result?.favorite == 1
         }
 
         //根据favorite状态更新数据库
         LaunchedEffect(favorite) {
-            val isNotExist =
-                RoomHelp.db.favoriteArticleDao().queryById(data.id, data.userId).isEmpty()
-            if (isNotExist) {
-                RoomHelp.db.favoriteArticleDao().insert(data.toFavoriteArticle())
+            val thatOne =
+                RoomHelp.db.favoriteArticleDao().queryById(data.id, data.userId).firstOrNull()
+            if (thatOne == null) {
+                RoomHelp.db.favoriteArticleDao()
+                    .insert(data.toFavoriteArticle(if (favorite) 1 else 0))
             } else {
-                RoomHelp.db.favoriteArticleDao().update(data.toFavoriteArticle())
+                //uid必须保持一致才能更新
+                //后面再看看有没有好的方案，总觉得这么写很蠢
+                RoomHelp.db.favoriteArticleDao()
+                    .update(data.toFavoriteArticle(if (favorite) 1 else 0).copy(uid = thatOne.uid))
             }
         }
     }
@@ -144,7 +150,10 @@ fun DetailPage(data: Article?, clickBack: () -> Unit) {
                     }
                 })
         }, floatingActionButton = {
-            FloatingActionButton(onClick = { favorite = !favorite }) {
+            FloatingActionButton(onClick = {
+                favorite = !favorite
+
+            }) {
                 Icon(
                     imageVector = if (favorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
                     contentDescription = null,

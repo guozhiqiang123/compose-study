@@ -12,9 +12,9 @@ import com.gzq.wanandroid.model.FavoriteArticle
  */
 @Database(
     entities = [Article::class, FavoriteArticle::class],
-    version = 2,
+    version = 3,
     exportSchema = true,
-//    autoMigrations = [AutoMigration(from = 2, to = 3)]
+    autoMigrations = [AutoMigration(from = 2, to = 3)]
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {

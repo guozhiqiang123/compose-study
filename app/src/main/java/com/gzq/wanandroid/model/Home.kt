@@ -61,7 +61,7 @@ data class Article(
     /**
      * 将Article实体转换为FavoriteArticle实体
      */
-    fun toFavoriteArticle(): FavoriteArticle {
+    fun toFavoriteArticle(favorite: Int): FavoriteArticle {
         return FavoriteArticle(
             uid = this.uid,
             id = this.id,
@@ -98,7 +98,8 @@ data class Article(
             userId = this.userId,
             visible = this.visible,
             zan = this.zan,
-            updateTime = this.updateTime
+            updateTime = this.updateTime,
+            favorite = favorite
         )
     }
 }
@@ -140,7 +141,8 @@ data class FavoriteArticle(
     @ColumnInfo(name = "userId") val userId: Int,
     @ColumnInfo(name = "visible") val visible: Int,
     @ColumnInfo(name = "zan") val zan: Int,
-    @ColumnInfo(name = "update_time") val updateTime: Long
+    @ColumnInfo(name = "update_time") val updateTime: Long,
+    @ColumnInfo(name = "favorite", defaultValue = "0") val favorite: Int
 )
 
 data class Tag(
