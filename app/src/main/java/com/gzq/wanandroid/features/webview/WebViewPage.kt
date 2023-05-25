@@ -103,6 +103,9 @@ fun WebViewPage(url: String, clickBack: () -> Unit) {
                     is WebViewEvent.PageState -> {
 
                     }
+                    else->{
+
+                    }
                 }
             }
         }

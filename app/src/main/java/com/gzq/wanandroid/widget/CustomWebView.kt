@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Bitmap
-import android.net.Uri
 import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
@@ -28,6 +27,8 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.webkit.WebSettingsCompat
 import androidx.webkit.WebViewFeature
 import com.gzq.wanandroid.core.log.TAG_WEBVIEW
+import com.gzq.wanandroid.widget.webview.OnWebViewScrollChangeListener
+import com.gzq.wanandroid.widget.webview.SmartWebView
 import com.just.agentweb.AgentWeb
 import com.just.agentweb.DefaultWebClient
 import com.just.agentweb.WebChromeClient
@@ -43,6 +44,26 @@ sealed class WebViewEvent {
     data class ReceivedTitle(val title: String? = "") : WebViewEvent()
     data class ProgressChange(val progress: Int) : WebViewEvent()
     data class PageState(val state: WebViewPageState) : WebViewEvent()
+
+    /**
+     * 网页滚动到顶部了
+     */
+    object OnPageTop : WebViewEvent()
+
+    /**
+     * 网页滚动到底部了
+     */
+    object OnPageEnd : WebViewEvent()
+
+    /**
+     * 网页向上滚动
+     */
+    object OnPageScrollUp : WebViewEvent()
+
+    /**
+     * 网页向下滚动
+     */
+    object OnPageScrollDown : WebViewEvent()
 }
 
 class CustomWebChromeClient(private val onEvent: ((WebViewEvent) -> Unit)? = null) :
@@ -119,9 +140,11 @@ fun CustomWebView(
     AndroidView(factory = {
         Timber.tag(TAG_WEBVIEW).d("初始化容器")
         val container = LinearLayout(it)
+        val webView = SmartWebView(it)
         agentWeb = AgentWeb.with((it) as Activity)
             .setAgentWebParent(container, LinearLayout.LayoutParams(-1, -1))
             .useDefaultIndicator(indicatorColor)
+            .setWebView(webView)
             .setSecurityType(AgentWeb.SecurityType.STRICT_CHECK)
             .setWebChromeClient(CustomWebChromeClient(onEvent))
             .setWebViewClient(CustomWebViewClient(onEvent))
@@ -137,6 +160,24 @@ fun CustomWebView(
                 else WebSettingsCompat.FORCE_DARK_OFF
             )
         }
+        //监听滚动状态
+        webView.setOnWebViewScrollListener(object : OnWebViewScrollChangeListener {
+            override fun onPageEnd() {
+                onEvent?.invoke(WebViewEvent.OnPageEnd)
+            }
+
+            override fun onPageTop() {
+                onEvent?.invoke(WebViewEvent.OnPageTop)
+            }
+
+            override fun onScrollUp() {
+                onEvent?.invoke(WebViewEvent.OnPageScrollUp)
+            }
+
+            override fun onScrollDown() {
+                onEvent?.invoke(WebViewEvent.OnPageScrollDown)
+            }
+        })
         container
     }, modifier = modifier)
 

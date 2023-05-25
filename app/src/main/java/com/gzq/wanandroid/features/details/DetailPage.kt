@@ -5,7 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.activity.compose.BackHandler
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -77,7 +82,8 @@ fun DetailPage(data: Article?, clickBack: () -> Unit) {
 
     //登录情况下
     //进入详情页，并阅读10秒，就加入阅读历史
-    if (LocalLoginState.current) {
+    val loginState = LocalLoginState.current
+    if (loginState) {
         val scope = rememberCoroutineScope()
         DisposableEffect(Unit) {
             val job = scope.launch(Dispatchers.IO) {
@@ -129,6 +135,9 @@ fun DetailPage(data: Article?, clickBack: () -> Unit) {
 
     var title by remember { mutableStateOf("") }
 
+    //控制收藏按钮的显示或者隐藏
+    var collectionButtonVisibility by remember { mutableStateOf(loginState) }
+
     AndroidTemplateTheme {
         Scaffold(topBar = {
             MyTopAppBar(
@@ -150,15 +159,18 @@ fun DetailPage(data: Article?, clickBack: () -> Unit) {
                     }
                 })
         }, floatingActionButton = {
-            FloatingActionButton(onClick = {
-                favorite = !favorite
-
-            }) {
-                Icon(
-                    imageVector = if (favorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
-                    contentDescription = null,
-                    tint = if (favorite) Color.Red else MaterialTheme.colorScheme.primary
-                )
+            AnimatedVisibility(
+                visible = collectionButtonVisibility,
+                enter = slideInVertically(initialOffsetY = { it / 2 }) + fadeIn(),
+                exit = slideOutVertically(targetOffsetY = { it / 2 }) + fadeOut()
+            ) {
+                FloatingActionButton(onClick = { favorite = !favorite }) {
+                    Icon(
+                        imageVector = if (favorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
+                        contentDescription = null,
+                        tint = if (favorite) Color.Red else MaterialTheme.colorScheme.primary
+                    )
+                }
             }
         }, floatingActionButtonPosition = FabPosition.Center) { paddingValues ->
             CustomWebView(
@@ -181,6 +193,18 @@ fun DetailPage(data: Article?, clickBack: () -> Unit) {
                     }
 
                     is WebViewEvent.PageState -> {
+
+                    }
+
+                    is WebViewEvent.OnPageScrollUp -> {
+                        collectionButtonVisibility = false
+                    }
+
+                    is WebViewEvent.OnPageScrollDown -> {
+                        collectionButtonVisibility = true && loginState
+                    }
+
+                    else -> {
 
                     }
                 }
