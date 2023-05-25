@@ -28,6 +28,13 @@ android {
         }
 
         multiDexEnabled true
+
+        //为是room具备自动升级功能，必须设置schemas导出路径
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {

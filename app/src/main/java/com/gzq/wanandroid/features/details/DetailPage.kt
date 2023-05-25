@@ -50,6 +50,7 @@ import com.gzq.wanandroid.widget.WebViewEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.detailPage(
@@ -72,6 +73,8 @@ fun NavGraphBuilder.detailPage(
 fun DetailPage(data: Article?, clickBack: () -> Unit) {
     if (data == null) return
 
+    var favorite by remember { mutableStateOf(false) }
+
     //登录情况下
     //进入详情页，并阅读10秒，就加入阅读历史
     if (LocalLoginState.current) {
@@ -80,10 +83,34 @@ fun DetailPage(data: Article?, clickBack: () -> Unit) {
             val job = scope.launch(Dispatchers.IO) {
                 delay(10000)
                 val mData = data.copy(updateTime = System.currentTimeMillis())
-                RoomHelp.db.articleDao().insertAll(mData)
+                val isNotExist =
+                    RoomHelp.db.articleDao().queryById(mData.id, mData.userId).isEmpty()
+                if (isNotExist) {
+                    RoomHelp.db.articleDao().insert(mData)
+                } else {
+                    RoomHelp.db.articleDao().update(mData)
+                }
             }
             onDispose {
                 job.cancel()
+            }
+        }
+
+        //查看当前文章是否标记为喜欢
+        LaunchedEffect(Unit) {
+            val result = RoomHelp.db.favoriteArticleDao().queryById(data.id, data.userId)
+                .firstOrNull()
+            favorite = result != null
+        }
+
+        //根据favorite状态更新数据库
+        LaunchedEffect(favorite) {
+            val isNotExist =
+                RoomHelp.db.favoriteArticleDao().queryById(data.id, data.userId).isEmpty()
+            if (isNotExist) {
+                RoomHelp.db.favoriteArticleDao().insert(data.toFavoriteArticle())
+            } else {
+                RoomHelp.db.favoriteArticleDao().update(data.toFavoriteArticle())
             }
         }
     }
@@ -95,8 +122,6 @@ fun DetailPage(data: Article?, clickBack: () -> Unit) {
     BackHandler(onBack = clickBack)
 
     var title by remember { mutableStateOf("") }
-
-    var favorite by remember { mutableStateOf(false) }
 
     AndroidTemplateTheme {
         Scaffold(topBar = {
