@@ -72,15 +72,7 @@ fun WebViewPage(url: String, clickBack: () -> Unit) {
                 title = title,
                 clickBack = clickBack
             )
-        }, floatingActionButton = {
-            FloatingActionButton(onClick = { favorite = !favorite }) {
-                Icon(
-                    imageVector = if (favorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
-                    contentDescription = null,
-                    tint = if (favorite) Color.Red else MaterialTheme.colorScheme.primary
-                )
-            }
-        }, floatingActionButtonPosition = FabPosition.Center) { paddingValues ->
+        }) { paddingValues ->
             CustomWebView(
                 url = url,
                 isDarkTheme = isSystemInDarkTheme(),
