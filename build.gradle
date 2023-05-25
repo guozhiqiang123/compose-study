@@ -2,6 +2,7 @@ buildscript {
     ext {
         config = [
                 'version_code': 1,
+                'version_name': "1.0.0",
                 'compile_sdk' : 33,
                 'min_sdk'     : 22,
                 'target_sdk'  : 33
@@ -14,7 +15,7 @@ buildscript {
         kotlin_version = '1.7.20'
         markwon = '4.6.2'
         prism4j = '2.0.0'
-        room_version='2.4.3'
+        room_version = '2.4.3'
     }
     repositories {
         mavenCentral()

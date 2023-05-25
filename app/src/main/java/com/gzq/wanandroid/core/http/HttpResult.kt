@@ -1,11 +1,13 @@
 package com.gzq.wanandroid.core.http
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 /**
  * 默认HttpResult,如果格式和此处有较大差异，可implements BaseModel进行扩展
  */
+@Keep
 class HttpResult<T> : BaseModel<T>, Serializable {
     @SerializedName(value = "errorCode")
     private val code = -1

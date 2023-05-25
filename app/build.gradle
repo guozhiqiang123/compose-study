@@ -20,7 +20,7 @@ android {
         minSdk config['min_sdk']
         targetSdk config['target_sdk']
         versionCode config['version_code']
-        versionName "1.0"
+        versionName config['version_name']
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
