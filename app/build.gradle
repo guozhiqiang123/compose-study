@@ -37,10 +37,27 @@ android {
         }
     }
 
+    signingConfigs {
+        release {
+            storeFile file('../keystore/wanandroid.keystore')
+            storePassword "123456"
+            keyAlias "wanandroid"
+            keyPassword "123456"
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
