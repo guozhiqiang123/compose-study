@@ -8,6 +8,7 @@ import com.gzq.wanandroid.LocalKey
 import com.gzq.wanandroid.core.base.BaseViewModel
 import com.gzq.wanandroid.model.UserInfo
 import com.gzq.wanandroid.repository.MyRepository
+import com.gzq.wanandroid.repository.local.RoomHelp
 import com.tencent.mmkv.MMKV
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -36,9 +37,14 @@ class ProfileMainViewModel : BaseViewModel() {
     fun fetchUserInfo() {
         _userInfo.value =
             MMKV.defaultMMKV().decodeParcelable(LocalKey.KEY_USER_INFO, UserInfo::class.java)
-
-        _menuListData.value =
-            _menuListData.value!!.copy(collection = userInfo.value!!.collectIds?.size ?: 0)
+        //先不使用网络数据
+//        _menuListData.value =
+//            _menuListData.value!!.copy(collection = userInfo.value!!.collectIds?.size ?: 0)
+        //先读取本地数据库
+        viewModelScope.launch {
+            val collectionSize = RoomHelp.db.favoriteArticleDao().queryAllFavoriteArticles().size
+            _menuListData.postValue(_menuListData.value!!.copy(collection = collectionSize))
+        }
     }
 
     /**
