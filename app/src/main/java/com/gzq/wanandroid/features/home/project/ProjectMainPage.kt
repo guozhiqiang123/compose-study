@@ -22,6 +22,7 @@ fun ProjectMainPage(
     routeSketchImagePage: () -> Unit,
     routeFreeStylePage: () -> Unit,
     routeTestClickPage: () -> Unit,
+    routePermissionPage:()->Unit,
 ) {
     MyBackHandler()
     LazyColumn(
@@ -67,6 +68,14 @@ fun ProjectMainPage(
                 Modifier.fillMaxWidth()
             ) {
                 Text(text = "验证点击事件穿透")
+            }
+        }
+        item {
+            Button(
+                onClick = routePermissionPage,
+                Modifier.fillMaxWidth()
+            ) {
+                Text(text = "权限请求")
             }
         }
     }

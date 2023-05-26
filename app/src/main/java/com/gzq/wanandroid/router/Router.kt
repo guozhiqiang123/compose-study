@@ -33,4 +33,6 @@ sealed class Router(val route: String) {
 
     object CollectionPage : Router("collection")
     object TestClickPage : Router("test/click")
+
+    object PermissionPage:Router("permission")
 }

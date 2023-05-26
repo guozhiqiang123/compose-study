@@ -28,11 +28,11 @@ class MainActivity : ComponentActivity() {
             val navHostController = appState.navController
             val currentBackStackEntryAsState by navHostController.currentBackStackEntryAsState()
             LaunchedEffect(navHostController, currentBackStackEntryAsState) {
-                Timber.tag(TAG_INFO)
-                    .d(
-                        "当前页面栈信息：${currentBackStackEntryAsState?.destination?.route}," +
-                                "栈内页面数量：${navHostController.backQueue.map { it.destination.route }}"
-                    )
+//                Timber.tag(TAG_INFO)
+//                    .d(
+//                        "当前页面栈信息：${currentBackStackEntryAsState?.destination?.route}," +
+//                                "栈内页面数量：${navHostController.backQueue.map { it.destination.route }}"
+//                    )
             }
             MainPage(windowSizeClass, appState = appState)
         }

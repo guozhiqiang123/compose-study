@@ -21,6 +21,7 @@ import com.gzq.wanandroid.features.home.home.homeMainPage
 import com.gzq.wanandroid.features.home.profile.profileMainPage
 import com.gzq.wanandroid.features.home.project.pages.coilImagePage
 import com.gzq.wanandroid.features.home.project.pages.glideImagePage
+import com.gzq.wanandroid.features.home.project.pages.permissionPage
 import com.gzq.wanandroid.features.home.project.pages.sketchImagePage
 import com.gzq.wanandroid.features.home.project.projectMainPage
 import com.gzq.wanandroid.features.login.loginPage
@@ -98,6 +99,8 @@ fun RouterRegister(
         collectionPage(navController,showBottomNavigationBar)
 
         testClickPage(navController)
+
+        permissionPage(navController)
     }
 }
 
