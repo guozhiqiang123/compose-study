@@ -7,17 +7,18 @@ import okhttp3.Response
 
 class SetCookieInterceptor : Interceptor {
 
+    private val mmkv by lazy { MMKV.defaultMMKV() }
+
     override fun intercept(chain: Interceptor.Chain): Response {
-        val request = chain.request()
-        val builder = request.newBuilder()
-        val domain = request.url.host
-        //获取domain内的cookie
-        if (domain.isNotEmpty()) {
-            val cookie=MMKV.defaultMMKV().decodeString(LocalKey.KEY_LOGIN_COOKIE) ?:""
-            if (cookie.isNotEmpty()) {
-                builder.addHeader("Cookie", cookie)
-            }
-        }
-        return chain.proceed(builder.build())
+        val cookie = mmkv.decodeString(LocalKey.KEY_LOGIN_COOKIE)
+            ?.takeIf { it.isNotEmpty() } ?: return chain.proceed(chain.request())
+
+        return chain.proceed(
+            chain.request()
+                .newBuilder()
+                .addHeader("Cookie", cookie)
+                .build()
+        )
     }
 }
+
